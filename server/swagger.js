@@ -6,7 +6,7 @@ const options = {
     info: {
       title: 'Partidazo API',
       version: '1.0.0',
-      description: 'API para la aplicación Partidazo - Plataforma de actividades deportivas',
+      description: 'API REST para la aplicación Partidazo - Plataforma de actividades deportivas.\n\nEsta documentación interactiva permite explorar y probar todos los endpoints disponibles.\n\n**Acceso a la documentación**: http://localhost:8000/api-docs',
       contact: {
         name: 'Partidazo Team',
       },

@@ -125,7 +125,8 @@ npm install
 cd server
 npm start
 ```
-El servidor estará en: `http://localhost:8000`
+El servidor estará en: `http://localhost:8000`  
+📖 **Documentación API (Swagger)**: `http://localhost:8000/api-docs`
 
 ### 7️⃣ Ejecutar el Frontend
 ```bash

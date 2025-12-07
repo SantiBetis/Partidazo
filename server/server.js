@@ -46,6 +46,20 @@ app.use(
 
 app.use(express.json({limit: '50mb'}));
 
+// Ruta principal
+app.get('/', (req, res) => {
+    res.json({
+        message: '¡Bienvenido a Partidazo API!',
+        version: '1.0.0',
+        documentation: '/api-docs',
+        endpoints: {
+            users: '/users',
+            posts: '/posts',
+            auth: '/loggedin'
+        }
+    });
+});
+
 // Swagger UI - Documentación de la API
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 

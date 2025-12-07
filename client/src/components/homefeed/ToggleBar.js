@@ -2,12 +2,12 @@ import React,{ useState } from "react";
 import styled from "styled-components";
 import { FiSearch, FiMapPin } from "react-icons/fi/index.esm.js";
 //****************************************************************
-// A toggle bar to navegate between map, and homefeed
+// Barra de alternar para navegar entre mapa y feed de inicio
 //****************************************************************
 
 const ToggleBar = ({ setDisplayedPage }) => {
 
-    // A state var to control the styling of actibe item in the bar
+    // Variable de estado para controlar el estilo del elemento activo en la barra
     const [active, setActive] = useState(1);
 
     const handleClick = (page) => {

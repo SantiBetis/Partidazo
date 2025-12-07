@@ -1,12 +1,12 @@
 import React,{ useState } from "react";
 import styled from "styled-components";
 // ***********************************************************
-// A simple toggle bar for the profile page
+// Barra de alternancia simple para la página de perfil
 // ***********************************************************
 
 const ToggleBar = ({ setDisplayedPage }) => {
 
-    // State variable to control what option is underlined or highlighted
+    // Variable de estado para controlar qué opción está subrayada o resaltada
     const [active, setActive] = useState(1);
 
     const handleClick = (page) => {

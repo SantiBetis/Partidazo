@@ -31,7 +31,7 @@ const ActivityForm = () => {
         return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
     });
 
-    // Initial values for the actividad post form
+    // Valores iniciales para el formulario de publicación de actividad
     const initialFormValues = {
         limit: '',
         actividadDate: {
@@ -50,15 +50,15 @@ const ActivityForm = () => {
         creator_id: usuarioActual?._id || '',
     }
 
-    // Set a state variable for post form data
+    // Establecer una variable de estado para los datos del formulario de publicación
     const [ postForm, setPostForm ] = useState(initialFormValues);
 
-    // State variables to monitor the form submission and form errors
+    // Variables de estado para monitorear el envío del formulario y los errores del formulario
     const [isFormSubmitted, setIsFormSubmitted] = useState(false);
     const [ formStatus, setFormStatus ] = useState('idle');
     const [ formError, setFormError] = useState({ status: false, message: 'no error'});
 
-    // Function that handles the snackbar alert
+    // Función que maneja la alerta snackbar
     const handleCloseBar = (event, reason) => {
         if (reason === 'clickaway') {
         return;
@@ -67,27 +67,27 @@ const ActivityForm = () => {
         setFormError({ status: false, message: 'no error'});
     };
 
-    // A function that handles the change in the actividadDate and updates the state variable 'postForm'
+    // Función que maneja el cambio en actividadDate y actualiza la variable de estado 'postForm'
     const handleDateChange = (name, value) => {
         setPostForm({ ...postForm, actividadDate:{...postForm.actividadDate, [name]:value }});
         handleCloseBar();
     };
 
-    // All other changes in the form's inputs are handled in this function
+    // Todos los demás cambios en los inputs del formulario se manejan en esta función
     const handleOtherChanges = (name, value) => {
-        // If changing the sport type, limit the maximum participants
+        // Si se cambia el tipo de deporte, limitar los participantes máximos
         if (name === 'actividadType') {
             const maxLimit = sportLimits[value];
             const currentLimit = parseInt(postForm.limit) || 0;
             
-            // If the current limit exceeds the new sport's max, reset it
+            // Si el límite actual excede el máximo del nuevo deporte, reiniciarlo
             if (currentLimit > maxLimit) {
                 setPostForm({ ...postForm, [name]: value, limit: '' });
             } else {
                 setPostForm({ ...postForm, [name]: value });
             }
         } 
-        // If changing the limit, validate it doesn't exceed the sport's max
+        // Si se cambia el límite, validar que no exceda el máximo del deporte
         else if (name === 'limit') {
             const maxLimit = sportLimits[postForm.actividadType];
             const numValue = parseInt(value) || 0;
@@ -104,11 +104,11 @@ const ActivityForm = () => {
         handleCloseBar();
     };
 
-    // handle resetting the form
+    // manejar el reinicio del formulario
     const handleFormRest = () => {
         setPostForm(initialFormValues);
     }
-    // The function handles the submission of the form by calling the endpoint handler in charge of adding a new post
+    // La función maneja el envío del formulario llamando al handler del endpoint encargado de añadir una nueva publicación
     const handleSubmit = (ev) => {
         setFormStatus('loading');
         ev.preventDefault();
@@ -462,7 +462,7 @@ const Select = styled.select`
     &:focus {
     color: white;
     }
-    // Hack for IE 11+
+    // Corrección para IE 11+
     &::-ms-expand {
     display: none;
     }
@@ -477,7 +477,7 @@ const SelecConatiner = styled.div`
     position: relative;
     width: 130px;
     margin: 5px;
-    // Dropdown icon
+    // Ícono desplegable
     &::after {
         color: white;
         content: '▾';

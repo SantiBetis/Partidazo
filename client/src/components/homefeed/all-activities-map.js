@@ -18,41 +18,41 @@ const Map = ({ postsData, postDataStatus }) => {
     const [selected, setSelected] = useState(null);
     const { currentLocation } = useContext(CurrentUserLocation);
 
-    // import the places libraries
+    // importar las librerías de places
     const libraries = ["places"];
 
-    // To avoid map re-rendering
+    // Para evitar el re-renderizado del mapa
     const mapRef = useRef();
     const onMapLoad = useCallback((map) => {
         mapRef.current = map;
     }, []);
 
-    // PanTo function that takes the user to the provided location in the map
-    // e.g: if you pass lat,and lng to panTo, the map will take you to that location
+    // Función PanTo que lleva al usuario a la ubicación proporcionada en el mapa
+    // ej: si pasas lat y lng a panTo, el mapa te llevará a esa ubicación
     const panTo = useCallback( ({ lat, lng })=>{
         mapRef.current.panTo({ lat, lng });
         mapRef.current.setZoom(11);
     },[])
 
-    // Apply some styles to the map
+    // Aplicar algunos estilos al mapa
     const options = {
         styles: mapStyles,
         disableDefaultUI: true,
         zoomControl: true,
     };
 
-    // Set the width and height of the map component
+    // Establece el ancho y alto del componente del mapa
     const mapContainerStyle = {
         width: "100%",
         height: "100%",
     };
 
-    // Specify the center of the map when the map loads
+    // Especificar el centro del mapa cuando el mapa se carga
     const center = currentLocation;
 
     
 
-    // Provide the api key for using Google maps and  libraries
+    // Proporcionar la clave API para usar Google maps y librerías
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAP_API_KEY,
         libraries,

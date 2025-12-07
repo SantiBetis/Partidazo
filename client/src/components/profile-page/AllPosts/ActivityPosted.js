@@ -13,15 +13,15 @@ const ActivityPosted = ({ profileData }) => {
     const [ postDataStatus, setPostDataStatus ] = useState('loading');
 
     useEffect(()=>{
-        // get the data of all posts in the system
+        // obtener los datos de todas las publicaciones en el sistema
         fetch(`/posts/creator/${profileData._id}`)
         .then(res=> res.json())
         .then(data => {
-            setPostsData(data.posts); // Store all posts data in postsData state variable
+            setPostsData(data.posts); // Almacena todos los datos de publicaciones en la variable de estado postsData
             setPostDataStatus('idle');
         })
 
-        // Clean up when this components is unmounted
+        // Limpieza cuando este componente se desmonta
         return () => {
             setPostsData([]);
             setPostDataStatus('loading');

@@ -8,7 +8,7 @@ const options = {
     useUnifiedTopology: true,
 };
 // *************************************************************************
-// The handler gets an actividad post data de la database
+// El handler obtiene los datos de una publicación de actividad de la base de datos
 // *************************************************************************
 
 const getPostById = async (req,res) => {

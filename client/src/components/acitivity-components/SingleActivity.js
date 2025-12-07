@@ -22,7 +22,7 @@ const sportBanners = {
     'Voleibol': voleibolBanner,
 };
 
-// Here I should be passing the data of the actividad I want to show.. no fetch here 
+// Aquí debería pasar los datos de la actividad que quiero mostrar.. sin fetch aquí 
 const SingleActivity = ({ post }) => {
 
     let history = useHistory();

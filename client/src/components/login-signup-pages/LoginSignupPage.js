@@ -19,7 +19,6 @@ const LoginSignupPage = () => {
         history.push("/login");
     };
     return(
-
         <Wrapper>
             <BackgroundImg src = {SportsBackground}/>
             <TopSection>

@@ -16,10 +16,10 @@ const FollowButton = ({ usuarioActual, targetedUser, numOfFollowers, setNumOfFol
     const [ isCurrentUserFollowing, setIsCurreuntUserFollowing ] = useState(initialFollowerStatus);
 
     const handleFollowing = () => {
-        // When follow button is clicked, set the opposite of it's current value 
+        // Cuando se hace clic en el botón de seguir, establece lo opuesto a su valor actual 
         setIsCurreuntUserFollowing(!isCurrentUserFollowing);
-        // Increment or decrement the number of followers in frontend based on the current
-        // following status
+        // Incrementar o decrementar el número de seguidores en el frontend basado en el
+        // estado actual de seguimiento
         isCurrentUserFollowing 
         ? setNumOfFollowers(numOfFollowers - 1)
         : setNumOfFollowers(numOfFollowers + 1);

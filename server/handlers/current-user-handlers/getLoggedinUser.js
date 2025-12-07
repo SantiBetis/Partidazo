@@ -11,7 +11,7 @@ const options = {
 };
 
 /**
- * Handler para autenticar y iniciar sesión de usuarios.
+ * Handler para autenticar e iniciar sesión de usuarios.
  * Valida las credenciales (email y contraseña) contra la base de datos.
  * Soporta contraseñas hasheadas con bcrypt y contraseñas legacy en texto plano.
  * Retorna la información completa del usuario si las credenciales son válidas.

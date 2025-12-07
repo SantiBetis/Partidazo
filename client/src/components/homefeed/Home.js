@@ -32,11 +32,11 @@ const Home = () => {
     useEffect(()=>{
         setPostDataStatus('loading');
 
-        // get the data of all posts in the system
+        // obtener los datos de todas las publicaciones en el sistema
         fetch(`/posts?actividadType=${sportType}&level=${sportLevel}`)
         .then(res=> res.json())
         .then(data => {
-            setPostsData(data.posts); // Store all posts data in postsData state variable
+            setPostsData(data.posts); // Almacena todos los datos de publicaciones en la variable de estado postsData
             setPostDataStatus('idle');
         })
     },[sportType, sportLevel])

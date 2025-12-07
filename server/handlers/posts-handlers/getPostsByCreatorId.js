@@ -8,7 +8,7 @@ const options = {
     useUnifiedTopology: true,
 };
 // ****************************************************************
-// This handler is used to get the actividad posts by the creator _id
+// Este handler se utiliza para obtener las publicaciones de actividad por el _id del creador
 // Los datos de los posts se muestran luego en el perfil del usuario creador
 // *****************************************************************
 
@@ -23,7 +23,7 @@ try {
     const query = { 'creator_id':_id };
 
     const db = client.db("Partidazo");
-    // Look up all posts that are created by the user with the provided _id ( creator_id )
+    // Buscar todos los posts que son creados por el usuario con el _id proporcionado ( creator_id )
     const posts = await db.collection("posts").find(query).toArray();
 
     client.close();

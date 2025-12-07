@@ -15,7 +15,7 @@ const NavBar = () => {
     const { usuarioActual } = useContext(CurrentUserContext)
     let history = useHistory();
 
-    // Clicking on nav bar items should take to proper page, and highlight that item with proper tabId
+    // Hacer clic en los elementos de la barra de navegación debe llevar a la página apropiada y resaltar ese elemento con el tabId adecuado
     const handleClick = (tabId,path) => {
         setActive(tabId);
         history.push(`/${path}`);

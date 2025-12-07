@@ -6,7 +6,7 @@ import moment from 'moment';
 import ActivityITemBackground from '../assets/circle-scatter-haikei.svg';
 import { useHistory } from "react-router";
 
-// Here I should be passing the data of the actividad I want to show.. no fetch here 
+// Aquí debería pasar los datos de la actividad que quiero mostrar.. sin fetch aquí 
 const SingleActivityInfoWindow = ({ post }) => {
 
     let history = useHistory();

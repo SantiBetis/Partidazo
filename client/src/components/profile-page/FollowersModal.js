@@ -20,7 +20,7 @@ const FollowersModal = ({ isOpen, onClose, userIds, title }) => {
 
         setLoadingStatus("loading");
         
-        // Fetch all users in the list
+        // Obtener todos los usuarios en la lista
         const fetchUsers = async () => {
             try {
                 const users = await Promise.all(

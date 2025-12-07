@@ -6,8 +6,8 @@ import { FiLogOut } from "react-icons/fi/index.esm.js";
 import { deleteLoginSession } from "../helpers/express-session-helpers.js";
 
 //*****************************************************************
-// A log out button in the current user profile. It calls the endpoint
-// that clears all usuario actual data info in the database colección
+// Botón de cierre de sesión en el perfil del usuario actual. Llama al endpoint
+// que limpia toda la información de datos del usuario actual en la colección de la base de datos
 // 'usuario actual' 
 //*****************************************************************
 

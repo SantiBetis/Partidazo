@@ -8,7 +8,7 @@ const options = {
     useUnifiedTopology: true,
 };
 // ************************************************************************
-// This handler gets all the actividad posts that a specific user has joined.
+// Este handler obtiene todas las publicaciones de actividad a las que un usuario específico se ha unido.
 // Los datos de los posts se muestran luego en el perfil de ese usuario
 // ************************************************************************
 

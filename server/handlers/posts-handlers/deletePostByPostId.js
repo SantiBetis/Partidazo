@@ -1,7 +1,7 @@
 // ***********************************************************************************
-// Este manejador se utiliza para eliminar todo about a specific post de la database
-// El punto final del manejador podría no ser utilizado in the frontend 
-// En su lugar, otro manejador llamado cancelPostById will cancel that actividad
+// Este handler se utiliza para eliminar todo sobre un post específico de la base de datos
+// El punto final del handler podría no ser utilizado en el frontend
+// En su lugar, otro handler llamado cancelPostById cancelará esa actividad
 // ***********************************************************************************
 
 const { MongoClient } = require("mongodb");
@@ -15,10 +15,10 @@ const options = {
 };
 
 // ************************************************************************************
-// Este es un manejador muy importante that is used to delete all actividad related data of
-// of specific post in the databse. No se está utilizando en el lado del cliente (frontend) of 
-// this version of the app.Más bien, es importante usarse en el proceso de prueba
-// in case an actividad post needs to be deleted completely.
+// Este es un handler muy importante que se utiliza para eliminar todos los datos relacionados con la actividad
+// de un post específico en la base de datos. No se está utilizando en el lado del cliente (frontend) de
+// esta versión de la app. Más bien, es importante usarse en el proceso de prueba
+// en caso de que una publicación de actividad necesite ser eliminada completamente.
 // *************************************************************************************
 
 const deletePostById = async (req, res) => {

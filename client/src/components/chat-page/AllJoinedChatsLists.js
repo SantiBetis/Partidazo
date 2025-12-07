@@ -6,14 +6,14 @@ import SingleGroupChatItem from "./components/SingleGroupChat.js";
 
 const ChatLists = () => {
 
-    // State variable to store current user joined activities 
+    // Variable de estado para almacenar las actividades unidas del usuario actual 
     const [ actividadesUnidas, setJoinedActivities ] = useState([]);
     const [ postsStatus, setPostsStatus ] = useState('loading');
 
     // Get current user information
     const { usuarioActual } = useContext(CurrentUserContext);
 
-    // Get the data of all joined Activities for the current user
+    // Obtener los datos de todas las actividades unidas para el usuario actual
     useEffect(()=> {
         setPostsStatus('loading');
         fetch(`/posts/joiner/${usuarioActual._id}`)

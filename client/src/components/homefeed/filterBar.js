@@ -109,7 +109,7 @@ const Select = styled.select`
     &:focus {
     color: white;
     }
-    // Hack for IE 11+
+    // Corrección para IE 11+
     &::-ms-expand {
     display: none;
     }
@@ -125,7 +125,7 @@ const SelecConatiner = styled.div`
     position: relative;
     width: 130px;
     margin: 5px;
-    // Dropdown icon
+    // Ícono desplegable
     &::after {
         color: white;
         content: '▾';

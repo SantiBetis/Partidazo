@@ -54,7 +54,7 @@ const Chat = ({ usuarioActual, actividadId })=> {
             setChatStatus('idle');
         });
 
-        // CLEAN UP THE EFFECT
+        // LIMPIAR EL EFECTO
         return () => socket.disconnect();
     }, [socket, actividadId]);
 

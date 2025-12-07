@@ -10,9 +10,9 @@ import { sports, levels } from '../create-activity-page/FormConstants.js';
  */
 const FilterBar = ({ sportType, setSportType, sportLevel, setSportLevel })=>{
     
-    // Reemplazar el primer elemento "Seleccionar" con "Todos" para mostrar todas las opciones
+    // Reemplazar el primer elemento "Seleccionar" con "All" para mostrar todas las opciones
     const updateSports = sports;
-    updateSports[0] = "Todos";
+    updateSports[0] = "All";
     
     /**
      * Maneja cambios en el filtro de deporte.

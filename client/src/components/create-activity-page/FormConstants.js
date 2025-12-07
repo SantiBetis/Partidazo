@@ -8,9 +8,9 @@ export const sports = [
 ]
 
 export const levels = [
-    'Todos',
-    'Nivel Principiante',
-    'Nivel Promedio',
-    'Nivel Avanzado',
-    'Nivel Profesional'
+    'All',
+    'Principiante',
+    'Promedio',
+    'Avanzado',
+    'Profesional'
 ]

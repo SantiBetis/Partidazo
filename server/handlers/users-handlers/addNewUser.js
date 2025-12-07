@@ -81,7 +81,7 @@ const addNewUser = async (req, res) => {
         await client.connect();
         console.log("connected");
 
-        const db = client.db("SportsPickApp");
+        const db = client.db("Partidazo");
 
         // Verificar si ya existe una cuenta con el correo electrónico registrado
         const result = await db.collection("users").find(query).toArray();

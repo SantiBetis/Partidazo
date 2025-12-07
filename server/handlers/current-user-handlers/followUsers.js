@@ -19,7 +19,7 @@ const updateFollowingUsers = async (req, res) => {
 
         // Conectar a MongoDB
         const client = new MongoClient(MONGO_URI, options);
-        const db = client.db("SportsPickApp");
+        const db = client.db("Partidazo");
         await client.connect();
         console.log("connected");
 

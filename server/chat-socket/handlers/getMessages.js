@@ -1,7 +1,7 @@
 
 const getMessages = async (client, io, room) => {
 
-    const db = client.db("SportsPickApp");
+    const db = client.db("Partidazo");
     const query = {_id: room };
     const post = await db.collection('posts').find(query).toArray();
     if(post[0].messages){

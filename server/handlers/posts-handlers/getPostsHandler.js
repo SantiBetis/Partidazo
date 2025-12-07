@@ -38,7 +38,7 @@ try {
     await client.connect();
     console.log("connected");
 
-    const db = client.db("SportsPickApp");
+    const db = client.db("Partidazo");
     const posts = await db.collection("posts").find(query).toArray();
 
     client.close();

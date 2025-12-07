@@ -22,7 +22,7 @@ try {
 
     const query = { 'creator_id':_id };
 
-    const db = client.db("SportsPickApp");
+    const db = client.db("Partidazo");
     // Look up all posts that are created by the user with the provided _id ( creator_id )
     const posts = await db.collection("posts").find(query).toArray();
 

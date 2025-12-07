@@ -22,7 +22,7 @@ try {
 
     const query = { 'participando._id':_id };
 
-    const db = client.db("SportsPickApp");
+    const db = client.db("Partidazo");
     // Pasar por todos los posts y encontrar los posts que tienen al usuario objetivo en 'participando' matriz
     const posts = await db.collection("posts").find(query).toArray();
 

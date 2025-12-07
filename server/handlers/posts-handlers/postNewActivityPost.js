@@ -121,7 +121,7 @@ const postNewActivityPost = async (req, res) => {
         console.log("connected");
         
         // Insertar el nuevo post en la colección Posts
-        const db = client.db("SportsPickApp");
+        const db = client.db("Partidazo");
         await db.collection("posts").insertOne(newPostInfo);
         
         // Agregar el nuevo id del post al perfil del usuario actual, específicamente a las matrices de actividades unidas y actividades publicadas

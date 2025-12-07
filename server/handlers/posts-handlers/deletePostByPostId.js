@@ -33,7 +33,7 @@ const deletePostById = async (req, res) => {
         console.log("connected");
     
         // Conectar a la base de datos
-        const db = client.db("SportsPickApp");
+        const db = client.db("Partidazo");
     
         // Eliminar el post de 'posts' colección
         await db.collection("posts").deleteOne(query);

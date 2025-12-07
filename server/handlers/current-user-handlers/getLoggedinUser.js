@@ -33,7 +33,7 @@ try {
     await client.connect();
     console.log("connected");
 
-    const db = client.db("SportsPickApp");
+    const db = client.db("Partidazo");
     // Buscar un usuario cuando se ingresa la dirección de correo
     const result = await db.collection("users").findOne(query);
 

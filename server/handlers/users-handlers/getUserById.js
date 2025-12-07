@@ -22,7 +22,7 @@ try {
     await client.connect();
     console.log("connected");
 
-    const db = client.db("SportsPickApp");
+    const db = client.db("Partidazo");
     const result = await db.collection("users").findOne(query);
     
     client.close();

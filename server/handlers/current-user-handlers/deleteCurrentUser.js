@@ -21,7 +21,7 @@ const deleteCurrentUser = async (req,res) => {
         await client.connect();
         console.log("connected");
 
-        const db = client.db("SportsPickApp");
+        const db = client.db("Partidazo");
 
         client.close();
         console.log("disconnected");

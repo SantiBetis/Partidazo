@@ -14,7 +14,7 @@ const cleanInvalidPosts = async () => {
         await client.connect();
         console.log("✅ Conectado a MongoDB");
 
-        const db = client.db("SportsPickApp");
+        const db = client.db("Partidazo");
         const postsCollection = db.collection("posts");
 
         // Encontrar todos los posts

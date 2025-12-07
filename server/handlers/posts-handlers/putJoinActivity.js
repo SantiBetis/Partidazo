@@ -30,7 +30,7 @@ const putjoinByUserId = async (req, res) => {
         console.log("connected");
 
         // Conectar a la base de datos
-        const db = client.db("SportsPickApp");
+        const db = client.db("Partidazo");
 
         // Encontrar el post con la consulta proporcionada
         const result = await db.collection("posts").findOne(query);

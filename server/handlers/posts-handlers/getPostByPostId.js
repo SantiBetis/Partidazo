@@ -23,7 +23,7 @@ const getPostById = async (req,res) => {
         console.log("connected");
 
         // Conectar a la base de datos
-        const db = client.db("SportsPickApp");
+        const db = client.db("Partidazo");
         // Encontrar el post basado en el _id del post proporcionado
         const result = await db.collection("posts").findOne(query);
         

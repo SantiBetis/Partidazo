@@ -1,6 +1,6 @@
 const sendMessage = async (client, message, room) => {
 
-    const db = client.db("SportsPickApp");
+    const db = client.db("Partidazo");
     const query = {_id: room };
     const addMessage = { $push: { messages: { ...message } } };
 

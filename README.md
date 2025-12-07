@@ -172,58 +172,12 @@ La aplicación estará en: `http://localhost:3000`
 - **Notificaciones**: Recibe alertas cuando alguien se une a tu actividad o te sigue
 - **Chat**: Comunícate con otros participantes en tiempo real
 
-### 📌 Notas Importantes:
-⚠️ **Vista móvil recomendada**: Usa las herramientas de desarrollador del navegador en modo móvil (iPhone 6/7/8 Plus)  
-⚠️ **Backend debe correr en puerto 8000**  
-⚠️ **Frontend debe correr en puerto 3000**  
-⚠️ **Geolocalización**: Permite el acceso a tu ubicación para funcionalidad completa  
-
 ---
-
-## 🎥 Demo
-📺 [Ver video de demostración en YouTube](https://www.youtube.com/watch?v=BVm9BsRPkzM)
-
----
-
-## 📸 Capturas de Pantalla
-
-### Pantalla de Inicio y Registro
-![Preview 1](https://i.ibb.co/myLmfb5/preview-1.png)
-
-### Feed de Actividades
-![Preview 2](https://i.ibb.co/L06Qtcs/preview-2.png)
-
-### Vista de Mapa
-![Preview 3](https://i.ibb.co/kySXcpj/preview-3.png)
-
-### Detalles de Actividad
-![Preview 4](https://i.ibb.co/2FLkNSg/preview-4.png)
-
-### Crear Actividad
-![Preview 5](https://i.ibb.co/rb0hc5M/preview-5.png)
-
-### Perfil de Usuario
-![Preview 6](https://i.ibb.co/z79ySTy/preview-6.png)
-
-### Chat en Tiempo Real
-![Preview 7](https://i.ibb.co/D8XW1ZP/preview-7.png)
-
-### Notificaciones
-![Preview 8](https://i.ibb.co/Mp1r8gz/preview-8.png)
-
-### Sistema de Seguidores
-![Preview 9](https://i.ibb.co/G0jGVk7/preview-9.png)
-
----
-
-## 📌 Conclusión y Posibles Mejoras
-
-El desarrollo de **Partidazo** permitió profundizar en tecnologías full-stack modernas, incluyendo React, Node.js, MongoDB y Socket.IO, además de aplicar buenas prácticas de diseño responsivo y arquitectura de aplicaciones web.
 
 ### 🔮 Mejoras Futuras:
 🔹 **PWA (Progressive Web App)**: Convertir la app en PWA para instalación móvil y funcionamiento offline  
 🔹 **Notificaciones Push**: Alertas en tiempo real fuera de la aplicación  
-🔹 **Integración con Redes Sociales**: Login con Google/Facebook  
+🔹 **Integración con Redes Sociales**: Login con Google
 🔹 **Sistema de Valoraciones**: Permitir que usuarios valoren actividades y participantes  
 🔹 **Actividades Recurrentes**: Crear actividades que se repiten semanalmente  
 🔹 **Modo Oscuro**: Implementar tema oscuro para mejor experiencia nocturna  
@@ -246,14 +200,6 @@ Si deseas contribuir a este proyecto, ¡eres bienvenido! 🚀
 5. Abre un **Pull Request**
 
 🔗 **Repositorio**: [GitHub - Partidazo](https://github.com/SantiBetis/Partidazo)
-
----
-
-## 📜 Licencia
-
-Este proyecto está bajo la licencia **MIT**. Puedes usarlo y modificarlo libremente.
-
-📌 Para más información sobre la licencia MIT, consulta: [Licencia MIT](https://opensource.org/licenses/MIT)
 
 ---
 

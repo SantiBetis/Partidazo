@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { keyframes } from 'styled-components'
 import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard } from "react-icons/fi/index.esm.js";
 import moment from 'moment';
-import ActivityITemBackground from '../assets/low-poly-grid-haikei.svg';
+import ActivityITemBackground from '../assets/circle-scatter-haikei.svg';
 import { useHistory } from "react-router";
 
 // Here I should be passing the data of the actividad I want to show.. no fetch here 
@@ -24,7 +24,7 @@ const SingleActivityInfoWindow = ({ post }) => {
                 <FiCalendar size = {45}/>
                 <SubContainer1>
                         <ActivityDate>
-                            {moment(post.actividadDate.date, 'YYYY-MM-DD').format('DD [de] MMMM [de] YYYY')}
+                            {moment(post.actividadDate.date, 'DD-MM-YYYY').format('DD [de] MMMM [de] YYYY')}
                         </ActivityDate>
                         
                         <ActivityTime>

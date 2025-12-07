@@ -7,12 +7,13 @@ const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 };
-// *******************************************************************************
-// Este manejador obtiene todos los posts de la base de datos. Giving that the initial
-// data there for posts are small, el feed de inicio muestra todos los posts en la base de datos.
-// 2 se han agregado consultas para filtrar los posts: actividad type, and level required
-// *******************************************************************************
-
+/**
+ * Handler para obtener todos los posts de actividades con filtros opcionales.
+ * Retorna todas las actividades de la base de datos.
+ * Soporta filtrado por tipo de actividad (deporte) y nivel de habilidad.
+ * Los filtros "All" (Todos) retornan todos los posts sin filtrar ese campo.
+ * Llamado desde el feed principal (Home) para mostrar actividades disponibles.
+ */
 const getPosts = async (req, res) => {
 try {
 
@@ -20,7 +21,8 @@ try {
 
     let query = {};
 
-    // Verificar los filtros y crear una consulta basada en los valores de los filtros
+    // Construir la consulta de MongoDB según los filtros seleccionados
+    // Si ambos son "All", no se aplica ningún filtro (query vacío)
     if( actividadType === "All" && level === "All" ){
         query = {};
     }

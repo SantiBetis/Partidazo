@@ -14,7 +14,7 @@ const CurrentLocationButton = ({panTo}) => {
     return(
         <Wrapper>
             <Button onClick = { ()=> handleClick() }>
-                <FiNavigation size={30} style={{fill:'#EE6C4D', color:'#293241'}}/>
+                <FiNavigation size={30} style={{fill:'#00C258', color:'#293241'}}/>
             </Button>
         </Wrapper>
     )

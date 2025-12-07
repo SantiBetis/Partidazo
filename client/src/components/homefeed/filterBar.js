@@ -1,24 +1,33 @@
 import React from "react";
 import styled from "styled-components";
 import { sports, levels } from '../create-activity-page/FormConstants.js';
-import { sportToEnglish, levelToEnglish } from '../create-activity-page/sportTranslations.js';
 
+/**
+ * Componente de barra de filtros para actividades.
+ * Permite filtrar actividades por tipo de deporte y nivel de habilidad.
+ * Los filtros se envían directamente en español a la API (ya no hay conversión a inglés).
+ * Muestra "Todos" como opción por defecto para mostrar todas las actividades.
+ */
 const FilterBar = ({ sportType, setSportType, sportLevel, setSportLevel })=>{
     
-    //Replace the first element in sports const matriz with 'Todos' instead of 'Seleccionar' for the first element
+    // Reemplazar el primer elemento "Seleccionar" con "Todos" para mostrar todas las opciones
     const updateSports = sports;
     updateSports[0] = "Todos";
     
+    /**
+     * Maneja cambios en el filtro de deporte.
+     * Los valores ahora se envían directamente en español a la base de datos.
+     */
     const handleSportChange = (value) => {
-        // Convert Spanish sport name to English for the query
-        const englishSport = value === "Todos" ? "All" : sportToEnglish[value] || value;
-        setSportType(englishSport);
+        setSportType(value);
     };
     
+    /**
+     * Maneja cambios en el filtro de nivel.
+     * Los valores ahora se envían directamente en español a la base de datos.
+     */
     const handleLevelChange = (value) => {
-        // Convert Spanish level name to English for the query
-        const englishLevel = value === "Todos" ? "All" : levelToEnglish[value] || value;
-        setSportLevel(englishLevel);
+        setSportLevel(value);
     };
     
     return(
@@ -29,7 +38,7 @@ const FilterBar = ({ sportType, setSportType, sportLevel, setSportLevel })=>{
                     <SelecConatiner>
                         <Select 
                             name = 'sports'
-                            value = {sportType === "All" ? "Todos" : Object.keys(sportToEnglish).find(key => sportToEnglish[key] === sportType) || sportType}
+                            value = {sportType}
                             onChange = {(ev) => handleSportChange(ev.target.value)}
                         >
                             {
@@ -46,7 +55,7 @@ const FilterBar = ({ sportType, setSportType, sportLevel, setSportLevel })=>{
                     <SelecConatiner>
                         <Select 
                             name = 'levels'
-                            value = {sportLevel === "All" ? "Todos" : Object.keys(levelToEnglish).find(key => levelToEnglish[key] === sportLevel) || sportLevel}
+                            value = {sportLevel}
                             onChange = {(ev) => handleLevelChange(ev.target.value)}
                         >
                             {

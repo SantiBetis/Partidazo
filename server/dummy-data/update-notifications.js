@@ -25,9 +25,9 @@ const updateNotifications = async () => {
 
         // Actualizar "joined your actividad" a "se ha unido a tu actividad"
         const result2 = await db.collection("users").updateMany(
-            { "notifications.message": "joined your actividad" },
-            { $set: { "notifications.$[elem].message": "se ha unido a tu actividad" } },
-            { arrayFilters: [{ "elem.message": "joined your actividad" }] }
+            { "notifications.message": "se ha unido a tu actividad" },
+            //{ $set: { "notifications.$[elem].message": "se ha unido a tu actividad" } },
+            //{ arrayFilters: [{ "elem.message": "joined your actividad" }] }
         );
 
         // Actualizar "withdrew from your actividad" a "se ha retirado de tu actividad"

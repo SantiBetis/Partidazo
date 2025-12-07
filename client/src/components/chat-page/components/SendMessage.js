@@ -70,7 +70,7 @@ const Button = styled.button`
 	padding: 0;
 	cursor: pointer;
     border-radius: 5px;
-    background: #EE6C4D;
+    background: #00C258;
     color:white;
     width:100px;
 `;

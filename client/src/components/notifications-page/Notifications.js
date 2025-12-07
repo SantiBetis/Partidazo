@@ -4,27 +4,30 @@ import SingleNotification from "./SingleNotification.js";
 import { CurrentUserContext } from "../all-contexts/currentUserContext.js"
 import CircularProgress from '@mui/material/CircularProgress/index.js';
 
-//*****************************
-// This the notifications page
-//*****************************
-
+/**
+ * Componente de la página de notificaciones.
+ * Muestra todas las notificaciones del usuario actual (unirse a actividades, nuevos seguidores, etc.).
+ * Obtiene las notificaciones desde el perfil del usuario y las muestra en orden inverso (más recientes primero).
+ * Maneja estados de carga y muestra mensaje cuando no hay notificaciones.
+ */
 const Notifications = () => {
 
     const { usuarioActual } = useContext(CurrentUserContext);
     const  [notifications, setNotifications ] = useState([]);
     const  [notificationsStatus, setNotificationsStatus ] = useState('loading');
 
-    // This is not a practical way to fetch notifications, but I am only doing it now because
-    // it will require a lot of refactoring to put current user profile in context instead of 
-    // fetching it everytime the notification page is mounted
+    /**
+     * Obtiene las notificaciones del usuario al montar el componente.
+     * Nota: Obtiene el perfil completo del usuario para acceder a notifications[].
+     * Las notificaciones se invierten para mostrar las más recientes primero.
+     */
     useEffect( () => {
         setNotificationsStatus('loading')
         fetch(`/users/${usuarioActual._id}`)
         .then(res => res.json())
         .then(data => {
-            // data.user.notifications matriz order is reversed to in order to have the most
-            // notification first. PS: using flex-box styling to display componenets in reverse
-            // caused some issues with scrolling vertically 
+            // Invertir el array para mostrar notificaciones más recientes primero
+            // (flexbox reverse causaba problemas con el scroll vertical)
             setNotifications(data.user.notifications.reverse());
             setNotificationsStatus("idle");
         })
@@ -36,7 +39,7 @@ const Notifications = () => {
             <Wrapper>
                 <h2>Notificaciones</h2>
                 <CircleWrapper>
-                    <CircularProgress style={{'color': '#EE6C4D'}} />
+                    <CircularProgress style={{'color': '#00C258'}} />
                 </CircleWrapper>
             </Wrapper>
         )

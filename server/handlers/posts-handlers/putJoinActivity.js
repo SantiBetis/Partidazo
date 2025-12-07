@@ -9,20 +9,22 @@ const options = {
   useUnifiedTopology: true,
 };
 
-// *******************************************************************************************
-// Este manejador es para gestionar la participación y el retiro de una actividad
-// Si el usuario no se ha unido a la actividad aún, el manejador permitirá que el usuario se una
-// Si el usuario ya se ha unido a la actividad, el manejador permitirá que el usuario se retire
-// *******************************************************************************************
-
+/**
+ * Handler para unirse o retirarse de una actividad (toggle join/withdraw).
+ * Si el usuario NO está en participando[], lo agrega y crea notificación.
+ * Si el usuario YA está en participando[], lo elimina y borra notificación.
+ * Valida que la actividad no esté llena antes de permitir unirse.
+ * Valida que la actividad no haya expirado.
+ * Llamado desde JoinButton en el frontend.
+ */
 const putjoinByUserId = async (req, res) => {
     try {
-        // El _id del usuario actual, se utilizará para permitir que el usuario se una o se retire de una actividad
-        // El _id del post determinará cuál actividad el usuario actual está apuntando
-        const { currentUser, postData } = req.body;
+        // Extraer el usuario actual y los datos del post desde el body
+        const { usuarioActual, postData } = req.body;
 
-        // Encontrar el post con post _id y encontrar el _id del usuario actual en la matriz 'participando'
-        const query = { _id: postData._id, "participando._id": currentUser._id };
+        // Construir query para verificar si el usuario ya está participando
+        // Busca el post por ID Y verifica si el usuario está en el array participando[]
+        const query = { _id: postData._id, "participando._id": usuarioActual._id };
 
         // Conectar a MongoDB
         const client = new MongoClient(MONGO_URI, options);
@@ -32,11 +34,11 @@ const putjoinByUserId = async (req, res) => {
         // Conectar a la base de datos
         const db = client.db("Partidazo");
 
-        // Encontrar el post con la consulta proporcionada
+        // Buscar si el post existe y el usuario ya está participando
         const result = await db.collection("posts").findOne(query);
         
-        // Si se encuentra un resultado, significa que el usuario ya se ha unido 
-        // por lo que el punto final manejará el retiro de la actividad
+        // Si se encuentra resultado, el usuario YA está participando → RETIRARSE
+        // Se elimina el usuario del array participando[] y se borra la notificación
         if (result) {
             // Crear una notificación para agregar al perfil del creador del post cuando el usuario actual se retira
             const date = new Date;
@@ -45,9 +47,9 @@ const putjoinByUserId = async (req, res) => {
                 date: date.toISOString(),
                 type:'withdraw',
                 user:{
-                    _id:currentUser._id,
-                    imgSrc:currentUser.imgSrc,
-                    displayName: currentUser.displayName
+                    _id:usuarioActual._id,
+                    imgSrc:usuarioActual.imgSrc,
+                    displayName: usuarioActual.displayName
                 },
                 activity:{
                   _id: postData._id,
@@ -59,12 +61,12 @@ const putjoinByUserId = async (req, res) => {
             // Consulta para encontrar el post objetivo
             const postQuery = { _id: postData._id };
             // La actualización para remover el usuario actual de la actividad
-            const removeUserfromPost = { $pull: { participando: { _id: currentUser._id } } };
+            const removeUserfromPost = { $pull: { participando: { _id: usuarioActual._id } } };
             // Encontrar el post y eliminar al usuario actual de la actividad
             const resultPostUpdate = await db.collection("posts").updateOne(postQuery, removeUserfromPost);
 
             // Consulta para encontrar un usuario y remover la actividad unida del perfil
-            const userQuery = { _id: currentUser._id };
+            const userQuery = { _id: usuarioActual._id };
             // La actualización para remover el _id de actividad del perfil del usuario
             const removeActivityFromUser = { $pull: { activitiesJoined: { _id: postData._id} } };
             // Encontrar el usuario y eliminar el post del perfil del usuario
@@ -93,9 +95,9 @@ const putjoinByUserId = async (req, res) => {
                 date: date.toISOString(),
                 type:'join',
                 user:{
-                    _id:currentUser._id,
-                    imgSrc:currentUser.imgSrc,
-                    displayName: currentUser.displayName
+                    _id:usuarioActual._id,
+                    imgSrc:usuarioActual.imgSrc,
+                    displayName: usuarioActual.displayName
                 },
                 activity:{
                   _id: postData._id,
@@ -108,12 +110,12 @@ const putjoinByUserId = async (req, res) => {
             // Consulta para encontrar el post objetivo
             const postQuery = { _id: postData._id };
             // La actualización para agregar el usuario actual a la actividad
-            const addUserToPost = { $push: { participando: { _id: currentUser._id } } }
+            const addUserToPost = { $push: { participando: { _id: usuarioActual._id } } }
             // Encontrar el post y agregar el usuario actual a la actividad
             const resultPostUpdate = await db.collection('posts').updateOne(postQuery,addUserToPost);
 
             // Consulta para encontrar un usuario y agregar la actividad unida al perfil
-            const userQuery = { _id: currentUser._id };
+            const userQuery = { _id: usuarioActual._id };
             // La actualización para agregar el _id de actividad al perfil del usuario
             const addPostToUser = { $push: { activitiesJoined: { _id: postData._id} } };
             // Encontrar al usuario con userQuery y agregar el id del post al perfil del usuario

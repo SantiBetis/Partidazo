@@ -34,7 +34,7 @@ const ActivityJoined = ( { profileData }) => {
 
         return(
         <CircleWrapper>
-            <CircularProgress style={{'color': '#EE6C4D'}} />
+            <CircularProgress style={{'color': '#00C258'}} />
         </CircleWrapper>
         )
     }

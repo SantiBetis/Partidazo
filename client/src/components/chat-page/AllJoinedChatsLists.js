@@ -27,9 +27,9 @@ const ChatLists = () => {
     if( postsStatus === 'loading' || usuarioActual === null || usuarioActual === undefined ){
         return (
             <Wrapper>
-                <h2>Joined Activties Chats</h2>
+                <h2>Chats de Actividades Unidas</h2>
                 <CircleWrapper>
-                    <CircularProgress style={{'color': '#EE6C4D'}} />
+                    <CircularProgress style={{'color': '#00C258'}} />
                 </CircleWrapper>
             </Wrapper>
         )

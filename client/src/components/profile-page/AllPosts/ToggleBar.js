@@ -31,11 +31,11 @@ const Button = styled.button`
     background-color: #3C4552;
     border-bottom: 7px solid #3C4552;
     width: 50%;
-    color: #EE6C4D;
+    color: #00C258;
     font-size: 1.02em;
     cursor: pointer;
 
-    ${({ active }) => active && ` border-bottom: 7px solid #EE6C4D; `}
+    ${({ active }) => active && ` border-bottom: 7px solid #00C258; `}
 
 `;
 const Wrapper = styled.div`

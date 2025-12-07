@@ -2,13 +2,12 @@ import React, { useContext, useState } from "react";
 import styled, { keyframes } from "styled-components";
 import { CurrentUserContext } from "../all-contexts/currentUserContext.js";
 import { sports, levels } from "./FormConstants.js";
-import { sportToEnglish, levelToEnglish } from "./sportTranslations.js";
 import Snackbar from '@mui/material/Snackbar/index.js';
 import MuiAlert from '@mui/material/Alert/index.js';
 import AddressSearchBox from "./AddressSearchBox.js";
 import LoadingCircule from "../loading-components/loadingCircule.js";
 
-// Límites máximos por deporte
+// Límites máximos de participantes por deporte
 const sportLimits = {
     'Fútbol': 22,
     'Baloncesto': 10,
@@ -17,11 +16,17 @@ const sportLimits = {
     'Voleibol': 12
 };
 
+/**
+ * Componente ActivityForm - Formulario para crear nuevas actividades deportivas
+ * Permite seleccionar deporte, nivel, fecha/hora, ubicación, límite de participantes y descripción
+ * Valida datos (fecha no en pasado, límite no excede máximo del deporte)
+ * Envía datos al backend para crear la actividad
+ */
 const ActivityForm = () => {
-    // Get the current user information from the currentUserContext
+    // Obtener información del usuario actual del contexto
     const { usuarioActual } = useContext(CurrentUserContext);
 
-    // An alert for the form status after a submission 
+    // Componente de alerta para mostrar estado del formulario después del envío
     const Alert = React.forwardRef(function Alert(props, ref) {
         return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
     });
@@ -135,16 +140,9 @@ const ActivityForm = () => {
             return;
         }
         
-        // Convert Spanish sport and level names to English before sending to backend
-        const formDataToSend = {
-            ...postForm,
-            actividadType: sportToEnglish[postForm.actividadType] || postForm.actividadType,
-            level: levelToEnglish[postForm.level] || postForm.level,
-        };
-        
         fetch('/posts/add',{
             method: "POST",
-            body: JSON.stringify(formDataToSend),
+            body: JSON.stringify(postForm),
             headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -373,7 +371,7 @@ const ButtonConatiner = styled.div`
 const Title = styled.h2`
     font-size: 1.4em;
     padding-bottom: 6px;
-    color: #EE6C4D;
+    color: #00C258;
     border-bottom: 2px solid #E0FBFC;
 `;
 
@@ -521,7 +519,7 @@ const SubmitButton = styled.button`
 	padding: 0;
 	cursor: pointer;
     border-radius: 5px;
-    background: #EE6C4D;
+    background: #00C258;
     color:white;
 `;
 

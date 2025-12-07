@@ -27,11 +27,11 @@ const SingleGroupChatItem = ({actividad}) => {
                 <Details>
                     <Time>
                         <FiCalendar/>
-                        <span>Time: {moment(actividad.actividadDate.from , 'HH:mm').format('hh:mm A')} - {moment(actividad.actividadDate.to , 'HH:mm').format('hh:mm A')}</span>
+                        <span>Hora: {moment(actividad.actividadDate.from , 'HH:mm').format('hh:mm A')} - {moment(actividad.actividadDate.to , 'HH:mm').format('hh:mm A')}</span>
                     </Time>
                     <Members>
                         <FiUsers/>
-                        <span>{actividad.participando.length} poeple joined this actividad</span>
+                        <span>{actividad.participando.length} personas unidas a esta actividad</span>
                     </Members>
                 </Details>
                 <Address>
@@ -82,7 +82,7 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
 display: flex;
-color: #EE6C4D;
+color: #00C258;
 div{
     margin-right: 10px;
     font-size:1.1em;

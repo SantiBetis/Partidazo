@@ -16,14 +16,16 @@ import { addLoginSession } from "../helpers/express-session-helpers.js";
 import uploadImageToCloudinary from "../helpers/uploadImgtoCloudinary.js";
 import SportsBackground from '../assets/wave-haikei.svg'
 
-//*****************************************************************
-// This is the sign up page, it contains the sign up form
-//*****************************************************************
-
+/**
+ * Componente SignupPage - Página de registro de nuevos usuarios
+ * Recopila información del usuario: nombre, email, contraseña, fecha de nacimiento, ubicación, foto
+ * Valida datos, sube imagen a Cloudinary, crea cuenta y autentica automáticamente
+ * Redirige al perfil del usuario tras registro exitoso
+ */
 const SignupPage = () => {
   const history = useHistory();
 
-  // Set initial values for the form
+  // Valores iniciales del formulario de registro
   const initialUserInfo = {
     displayName: "",
     imgSrc: "",
@@ -36,34 +38,38 @@ const SignupPage = () => {
     confirmPassword:"",
   };
 
-  // Update current user info when a suer sign up, it makes sure that the user gets logged in
-  // right after signing up
+  // Actualizar información del usuario actual cuando se registra
+  // Asegura que el usuario inicie sesión automáticamente después del registro
   const { setCurrentUser, setIsUserLoggedIn } = useContext(CurrentUserContext);
 
   const IconSize = 35;
 
-  // A user ref to display a placeholder when the date input is on blur
+  // Referencia para mostrar placeholder cuando el input de fecha pierde foco
   const ref = useRef();
 
-  // State variable for user information in the form
+  // Estado para la información del usuario en el formulario
   const [newUserInfo, setNewUserInfo] = useState(initialUserInfo);
-  // State variable for the loading button after submission
+  // Estado para el botón de carga después del envío
   const [fetchStatus, setFetchStatus] = useState("idle");
-  // Setting the error received from backend endpoint
+  // Estado para errores recibidos del backend
   const [errorStatus, setErrorStatus] = useState({
     status: "idle",
     error: "no error",
   });
 
-  // Function to handle the change in all form inputs
+  /**
+   * Maneja cambios en todos los inputs del formulario
+   * Actualiza estado y limpia errores
+   */
   const handleInputChange = (name, value) => {
     setNewUserInfo({ ...newUserInfo, [name]: value });
     setErrorStatus({ status: "idle", error: "no error" });
   };
 
-  // handle the form submission by sending the mew form data to /users/add endpoint
-  // The endpoint handles the new user info, and returns an error if there is any error
-  // while filling up the form
+  /**
+   * Maneja el envío del formulario de registro
+   * Valida datos, crea nuevo usuario, establece sesión y redirige al perfil
+   */
   const handleSubmit = (ev) => {
     setFetchStatus("loading");
     ev.preventDefault();
@@ -301,7 +307,7 @@ const Textfield = styled.textarea`
 `;
 
 const SignUpButton = styled.button`
-  background: #ee6c4d;
+  background: #00C258;
   font-size: 1.3em;
   font-weight: bold;
   margin: 8px 20px;
@@ -330,3 +336,4 @@ const Error = styled.div`
 `;
 
 export default SignupPage;
+

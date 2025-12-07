@@ -5,26 +5,30 @@ import Map from "./all-activities-map.js";
 import Search from "./all-activities-search.js";
 import FilterBar from "./filterBar.js";
 import { CurrentUserLocation } from "../all-contexts/currentLocationContext.js";
-//*********************************************************************
-// This the homepage, it navegates between a map, and regulat homefeed
-//*********************************************************************
 
+/**
+ * Componente Home - Página principal de la aplicación
+ * Muestra todas las actividades deportivas disponibles en formato lista o mapa
+ * Permite filtrar por deporte y nivel, calcula distancias desde ubicación actual
+ * Ordena actividades por proximidad al usuario
+ */
 const Home = () => {
-    // Get current user location, and getDistance function
-    // These helpers are used to calculate the actividad distance
-    // from current user location
+    // Obtener ubicación actual del usuario y funciones para gestionar ubicación
+    // Estas funciones se usan para calcular la distancia de las actividades
+    // desde la ubicación actual del usuario
     const { currentLocation, getDistance, requestLocation, locationAllowed } = useContext(CurrentUserLocation);
 
-    // A state variable to control the toggle bar
+    // Estado para controlar la vista activa (lista o mapa)
     const [ displayedPage, setDisplayedPage ] = useState(1);
-    // A state variable to store the posts data
+    // Estado para almacenar los datos de todas las actividades
     const [ postsData, setPostsData ] = useState([]);
-    // A state variable to control the loading screen
+    // Estado para controlar la pantalla de carga
     const [ postDataStatus, setPostDataStatus ] = useState('loading');
-
+    // Estados para filtros de deporte y nivel
     const [ sportType, setSportType ] = useState('All');
     const [ sportLevel, setSportLevel ] = useState('All');
 
+    // Obtener todas las actividades del sistema con filtros aplicados
     useEffect(()=>{
         setPostDataStatus('loading');
 
@@ -37,16 +41,16 @@ const Home = () => {
         })
     },[sportType, sportLevel])
 
-    // Add distance from current location for each post
+    // Añadir distancia desde la ubicación actual a cada actividad
     const updatePostsData = postsData.map( (post) => {
         const distance = (currentLocation && post.actividadAddress && post.actividadAddress.coordinates) 
             ? getDistance(currentLocation, post.actividadAddress.coordinates)
-            : 999999; // Use a large number if coordinates are not available
+            : 999999; // Usar número grande si no hay coordenadas disponibles
         const newPost = { ...post, distance };
         return newPost
     })
 
-    // Sort the posts based on distance from current location
+    // Ordenar las actividades por distancia desde la ubicación actual (más cercanas primero)
     const sortedPostsData = updatePostsData.sort( (a,b) => a.distance - b.distance);
 
 
@@ -83,7 +87,7 @@ const LocationNotice = styled.div`
     background: #f5f5f5;
     color: #333;
     button{
-        background: #EE6C4D;
+        background: #00C258;
         color: white;
         border: none;
         padding: 6px 10px;

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import SportsBackground from '../assets/wave-haikei.svg'
-import bgImg from '../assets/bgImg.png';
+import PartidazoLogo from '../assets/PartidazoLogo.png';
 //*****************************************************************
 // This page is the fist page in the app, it gives the use the option
 // to sign in or log in
@@ -22,32 +22,26 @@ const LoginSignupPage = () => {
 
         <Wrapper>
             <BackgroundImg src = {SportsBackground}/>
-            {/* <Title>SportsPick</Title> */}
+            <TopSection>
+                <LogoImg src={PartidazoLogo} alt="Partidazo Logo" />
+                <Slogan>ENCUENTRA TU EQUIPO, VIVE EL PARTIDO.</Slogan>
+            </TopSection>
             <ButtonContainer>
-                <Logo>
-                    <span>SPORTS</span>
-                    <span>PICK</span>
-                    Get Together with One Click
-                </Logo>
-                <Quotes>
-                    <p>"Un hombre puede ser un ingrediente crucial en un equipo, pero un hombre no puede hacer un equipo."</p>
-                    <span>-Kareem Abdul-Jabbar</span>
-                </Quotes>
                 <LoginButton
                     onClick = {() => {handleLogin()}}
                 >
-                    Log In
+                    Iniciar sesión
                 </LoginButton>
                 
                 <HorizontalLineContainer>
                     <hr style = {{ marginRight: '5px', width: '145px'}}/>
-                    or
+                    o
                     <hr style = {{ marginLeft: '5px', width: '145px'}}/>
                 </HorizontalLineContainer>
                 <SignInButton
                     onClick = {() => {handleSignup()}}
                 >
-                    Sign Up
+                    Crear cuenta
                 </SignInButton>
             </ButtonContainer>
         </Wrapper>
@@ -77,22 +71,31 @@ height: 100%;
 top:0;
 `;
 
-const Logo = styled.div`
-display:flex;
-justify-content: center;
-align-items:center;
+const TopSection = styled.div`
+display: flex;
 flex-direction: column;
-width:350px;
-height: 350px;
-font-size: 1em;
-color: grey;
+align-items: center;
+justify-content: center;
+margin-top: 30px;
+margin-bottom: auto;
+`;
 
-span {
-    font-size: 4em;
-    margin-bottom: 2px;
-    font-family: 'Bebas Neue', cursive;
-    color: #EE6C4D;
-}
+const LogoImg = styled.img`
+width: 380px;
+height: 380px;
+object-fit: contain;
+margin-bottom: 10px;
+`;
+
+const Slogan = styled.div`
+font-size: 1.2em;
+color: white;
+text-align: center;
+margin-bottom: 40px;
+font-weight: bold;
+z-index: 1;
+position: relative;
+text-transform: uppercase;
 `;
 
 const Quotes = styled.div`
@@ -130,7 +133,7 @@ const LoginButton = styled.button`
 `;
 
 const SignInButton = styled(LoginButton)`
-    background: #EE6C4D;
+    background: #00C258;
     color:white;
     margin-bottom: 20px;
 `;
@@ -141,3 +144,4 @@ const HorizontalLineContainer = styled.div`
 `;
 
 export default LoginSignupPage
+

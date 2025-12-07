@@ -3,9 +3,8 @@ import styled from "styled-components";
 import moment from 'moment';
 import noImg from'../assets/noImg.png';
 import { useHistory } from "react-router";
-import { sportToSpanish } from "../create-activity-page/sportTranslations.js";
 // import singleChatItemBackground from "../../assests/chat-low-poly-grid-haikei.svg";
-import singleChatItemBackground from "../assets/chat-low-poly-grid-haikei.svg";
+import singleChatItemBackground from "../assets/low-poly-grid-haikei.svg";
 //*****************************************************************
 // This component is used to render a single notification block in
 // the notification page
@@ -49,7 +48,7 @@ const SingleNotification = ({notification}) => {
                     {
                         notification.actividad && notification.actividad !== null && notification.actividad.type &&
                             <Details onClick={()=> handleActivity()}>
-                                {sportToSpanish[notification.actividad.type] || notification.actividad.type}{', '}
+                                {notification.actividad.type}{', '}
                                 {notification.actividad.date && notification.actividad.date.date 
                                     ? moment(notification.actividad.date.date, 'YYYY-MM-DD').format('DD [de] MMMM [de] YYYY')
                                     : 'Fecha no disponible'
@@ -102,7 +101,7 @@ font-size:0.9em;
 `;
 
 const Title = styled.div`
-color:#EE6C4D;
+color:#00C258;
 font-size:0.93em;
 span{
     font-weight:bold;

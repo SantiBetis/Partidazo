@@ -38,7 +38,7 @@ const FollowButton = ({ usuarioActual, targetedUser, numOfFollowers, setNumOfFol
     return(
         <Wrapper>
             {isCurrentUserFollowing ?
-            <Button onClick={()=> handleFollowing()} style = {{ background:'#EE6C4D'}}>
+            <Button onClick={()=> handleFollowing()} style = {{ background:'#00C258'}}>
                 Dejar de Seguir
             </Button>
             :

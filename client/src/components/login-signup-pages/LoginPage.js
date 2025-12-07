@@ -8,14 +8,15 @@ import LoadingCircule from "../loading-components/loadingCircule.js";
 import { addLoginSession } from "../helpers/express-session-helpers.js";
 import SportsBackground from '../assets/wave-haikei.svg'
 
-//*****************************************************************
-// This the log in page. It asks for the user email and password.
-// it calls updateCurrentUser function from CurrentUserContext.
-// updateCurrentUser handles signing in and returns reponse if
-// signing in fails 
-//*****************************************************************
+/**
+ * Componente LoginPage - Página de inicio de sesión
+ * Permite a los usuarios autenticarse con email y contraseña
+ * Valida credenciales y establece la sesión del usuario
+ * Redirige al perfil del usuario tras inicio exitoso
+ */
 const LoginPage = () => {
 
+    // Estados para almacenar datos del formulario
     const [ userEmail, setUserEmaill ] = useState("");
     const [ userPassword, setUserPassword ] = useState("");
     const [ isPasswordShown, setIsPasswordShown ] = useState(false);
@@ -26,17 +27,27 @@ const LoginPage = () => {
     const iconSize = 35;
     const { setCurrentUser, setIsUserLoggedIn } = useContext(CurrentUserContext);
 
+    /**
+     * Maneja cambios en el input de email y limpia errores
+     */
     const handleEmailInput = (value) => {
         setUserEmaill(value);
         setErrorStatus({status: 'idle', error: 'no error'});
     }
 
+    /**
+     * Maneja cambios en el input de contraseña y limpia errores
+     */
     const handlePasswordInput = (value) => {
         setUserPassword(value);
         setErrorStatus({status: 'idle', error: 'no error'});
     }
 
 
+    /**
+     * Maneja el envío del formulario de inicio de sesión
+     * Valida credenciales, establece sesión y redirige al perfil
+     */
     const handleSubmit = (ev) => {
         ev.preventDefault();
         setFetchStatus('loading');

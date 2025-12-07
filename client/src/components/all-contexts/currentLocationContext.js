@@ -1,9 +1,23 @@
 import React, { useState, createContext, useEffect } from "react";
 
+/**
+ * Contexto para gestionar la ubicación actual del usuario
+ * Proporciona la ubicación GPS del usuario y funciones para solicitarla
+ * Incluye funcionalidad de respaldo usando geolocalización por IP si GPS falla
+ */
 export const CurrentUserLocation = createContext(null);
+
+/**
+ * Proveedor del contexto de ubicación del usuario
+ * Gestiona la obtención de coordenadas GPS y cálculo de distancias
+ * 
+ * @param {ReactNode} children - Componentes hijos que tendrán acceso al contexto
+ */
 export const CurrentUserLocationProvider = ({children}) => {
 
+    // Estado para almacenar las coordenadas actuales (lat, lng)
     const [ currentLocation, setCurrentLocation ] = useState(null);
+    // Estado para saber si el usuario permitió acceso a la ubicación
     const [ locationAllowed, setLocationAllowed ] = useState(null);
 
     useEffect(()=>{
@@ -20,6 +34,10 @@ export const CurrentUserLocationProvider = ({children}) => {
         });
     },[]);
 
+    /**
+     * Solicita la ubicación del usuario
+     * Primero intenta con GPS del navegador, si falla usa geolocalización por IP como respaldo
+     */
     const requestLocation = () => {
         navigator.geolocation.getCurrentPosition( (position) => {
             setCurrentLocation({
@@ -53,12 +71,20 @@ export const CurrentUserLocationProvider = ({children}) => {
         });
     };
 
+    /**
+     * Calcula la distancia en kilómetros entre dos puntos geográficos
+     * Usa la fórmula del haversine para calcular la distancia en la esfera terrestre
+     * 
+     * @param {Object} pos1 - Primera posición {lat, lng}
+     * @param {Object} pos2 - Segunda posición {lat, lng}
+     * @returns {Number} Distancia en kilómetros (redondeada a 2 decimales)
+     */
     const getDistance = (pos1, pos2) => {
-        // Guard against missing positions
+        // Protección contra posiciones faltantes o inválidas
         if (!pos1 || !pos2 || pos1.lat == null || pos1.lng == null || pos2.lat == null || pos2.lng == null) {
-            return 999999; // very large distance so that unknown locations sort to the end
+            return 999999; // distancia muy grande para que ubicaciones desconocidas aparezcan al final
         }
-        // Code source: https://www.geodatasource.com/resources/tutorials/how-to-calculate-the-distance-between-2-locations-using-javascript/
+        // Código fuente: https://www.geodatasource.com/resources/tutorials/how-to-calculate-the-distance-between-2-locations-using-javascript/
         if ((pos1.lat ===  pos2.lat) && (pos1.lng === pos2.lng)) {
             return 0;
         }
@@ -74,7 +100,7 @@ export const CurrentUserLocationProvider = ({children}) => {
             dist = Math.acos(dist);
             dist = dist * 180/Math.PI;
             dist = dist * 60 * 1.1515;
-            dist = dist * 1.609344;
+            dist = dist * 1.609344; // Convertir millas a kilómetros
 
             return dist.toFixed(2);
         }

@@ -55,7 +55,7 @@ const cleanInvalidPosts = async () => {
             }
 
             // Validar level
-            if (!post.level || post.level === "select") {
+            if (!post.level || post.level === "select" || post.level === "All") {
                 isValid = false;
                 reasons.push("level inválido");
             }

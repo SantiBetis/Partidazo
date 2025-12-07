@@ -3,9 +3,24 @@ import styled from "styled-components";
 import { keyframes } from 'styled-components'
 import { FiCalendar, FiMapPin, FiFlag, FiAnchor, FiClipboard } from "react-icons/fi/index.esm.js";
 import moment from 'moment';
-import ActivityItemBackground from '../assets/low-poly-grid-haikei.svg';
+import ActivityItemBackground from '../assets/circle-scatter-haikei.svg';
 import { useHistory } from "react-router";
-import { sportToSpanish, levelToSpanish } from "../create-activity-page/sportTranslations.js";
+
+// Importar banners de deportes
+import futbolBanner from '../assets/FutbolBanner.png';
+import baloncestoBanner from '../assets/BaloncestoBanner.png';
+import tenisBanner from '../assets/TenisBanner.png';
+import padelBanner from '../assets/PadelBanner.png';
+import voleibolBanner from '../assets/VoleibolBanner.png';
+
+// Mapeo de deportes a sus banners
+const sportBanners = {
+    'Fútbol': futbolBanner,
+    'Baloncesto': baloncestoBanner,
+    'Tenis': tenisBanner,
+    'Pádel': padelBanner,
+    'Voleibol': voleibolBanner,
+};
 
 // Here I should be passing the data of the actividad I want to show.. no fetch here 
 const SingleActivity = ({ post }) => {
@@ -20,6 +35,10 @@ const SingleActivity = ({ post }) => {
 
     return (
         <Wrapper onClick = {() => handleClick()}>
+            {/* Banner del deporte */}
+            {post.actividadType && sportBanners[post.actividadType] && (
+                <SportBanner src={sportBanners[post.actividadType]} alt={`${post.actividadType} banner`} />
+            )}
             <Conatiner>
                 {/* <BackgroundImg></BackgroundImg> */}
                 <FiCalendar size = {45}/>
@@ -51,12 +70,12 @@ const SingleActivity = ({ post }) => {
             <SubContainer2 style = { { marginTop:'6px'}} >
                 <Text>
                     <FiFlag size = {iconSize}/>
-                    <span>{sportToSpanish[post.actividadType] || post.actividadType || 'Deporte desconocido'}</span>
+                    <span>{post.actividadType || 'Deporte desconocido'}</span>
                 </Text>
 
                 <Text>
                     <FiAnchor size = {iconSize}/>
-                    <span>Nivel {levelToSpanish[post.level] || post.level || 'desconocido'}</span>
+                    <span>Nivel {post.level || 'desconocido'}</span>
                 </Text>
             </SubContainer2>
             <Text style = { { marginTop:'6px', paddingBottom:'15px'}} >
@@ -145,6 +164,13 @@ color: darkgrey;
 span{
     margin: 0px 5px;
 }
+`;
+
+const SportBanner = styled.img`
+width: 100%;
+height: 120px;
+object-fit: cover;
+border-radius: 10px 10px 0 0;
 `;
 
 export default SingleActivity

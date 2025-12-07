@@ -168,7 +168,7 @@ const UsersContainer = styled.div`
     }
 
     &::-webkit-scrollbar-thumb {
-        background: #EE6C4D;
+        background: #00C258;
         border-radius: 10px;
 
         &:hover {
@@ -217,7 +217,7 @@ const UserName = styled.div`
 `;
 
 const YouLabel = styled.span`
-    color: #EE6C4D;
+    color: #00C258;
     font-size: 0.85rem;
     margin-left: 6px;
     font-weight: normal;
@@ -244,3 +244,4 @@ const EmptyText = styled.div`
 `;
 
 export default FollowersModal;
+

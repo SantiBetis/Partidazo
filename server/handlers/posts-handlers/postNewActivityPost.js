@@ -9,15 +9,18 @@ const options = {
     useUnifiedTopology: true,
 };
 
-// **************************************************************************************
-// The handler manages posting a new actividad. It's called in the create actividad page
-// **************************************************************************************
-
+/**
+ * Handler para crear una nueva actividad deportiva.
+ * Valida todos los campos requeridos (fecha, hora, dirección, tipo de deporte, nivel)
+ * Crea el objeto del post con un ID único y agrega al creador como primer participante.
+ * Envía notificaciones a los seguidores del creador.
+ * Llamado desde el formulario de crear actividad en el frontend.
+ */
 const postNewActivityPost = async (req, res) => {
 
     try{
 
-        // destructure all body keys that need validation
+        // Desestructurar todos los campos del body que necesitan validación
         const {
             limit,
             actividadDate,
@@ -28,20 +31,20 @@ const postNewActivityPost = async (req, res) => {
             creator_id,
         } = req.body;
         
-        // Get today's date 
+        // Obtener la fecha actual en formato ISO
         const d = new Date();
         let todayDate = d.toISOString();
         
-        // Create the object for the new post to be added
+        // Crear el objeto del nuevo post que se agregará a la base de datos
         const newPostInfo = {
             ...req.body,
-            creator_id: creator_id , // creator id
-            _id: uuidv4(), // Post id
-            participando: [{ _id: creator_id }], // Adding creator as a joiner also
-            dateCreated: todayDate,
+            creator_id: creator_id , // ID del creador
+            _id: uuidv4(), // ID único del post
+            participando: [{ _id: creator_id }], // Agregar al creador como primer participante
+            dateCreated: todayDate, // Fecha de creación
         };
         
-        // Validate the form's inputs data
+        // Validar todos los campos del formulario antes de insertar en la base de datos
         if (
             actividadDate.date === undefined ||
             actividadDate.date === null ||

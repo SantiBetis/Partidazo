@@ -18,10 +18,10 @@ const ToggleBar = ({ setDisplayedPage }) => {
     return(
         <Wrapper>
             <Button active = {active === 1} onClick = {() => handleClick(1)} >
-                <FiSearch size = {30} color = {'EE6C4D'}/>
+                <FiSearch size = {30} color = {'00C258'}/>
             </Button>
             <Button active = {active === 2} onClick = {() => handleClick(2)} >
-                <FiMapPin  size = {30} color = {'EE6C4D'} />
+                <FiMapPin  size = {30} color = {'00C258'} />
             </Button>
         </Wrapper>
     );
@@ -34,7 +34,7 @@ const Button = styled.button`
     width: 50%;
     cursor: pointer;
 
-    ${({ active }) => active && ` border-bottom: 7px solid #EE6C4D; `}
+    ${({ active }) => active && ` border-bottom: 7px solid #00C258; `}
 
 `;
 const Wrapper = styled.div`

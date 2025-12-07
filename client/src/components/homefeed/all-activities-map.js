@@ -8,7 +8,7 @@ import {
 } from "@react-google-maps/api";
 import mapStyles from "./map-management/mapStyles.js";
 import InfoWindowContent from "./map-management/InfoWindowContent.js";
-import orangeMarker from '../assets/orangeMarker.png';
+import greenMarker from '../assets/greenMarker.png';
 import currentLocationImg from '../assets/currentLocationImg.png'; 
 import CurrentLocationButton from "./map-management/currentLocation.js";
 import { CurrentUserLocation } from "../all-contexts/currentLocationContext.js";
@@ -64,7 +64,7 @@ const Map = ({ postsData, postDataStatus }) => {
 
     return (
         <Wrapper>
-            <Title>SportsPickApp</Title>
+            <Title>Partidazo</Title>
             <CurrentLocationButton panTo = { panTo }/>
             <GoogleMap
                 mapContainerStyle={mapContainerStyle}
@@ -95,7 +95,7 @@ const Map = ({ postsData, postDataStatus }) => {
                                         lng: post.actividadAddress.coordinates.lng,
                                     }}
                                     icon = {{
-                                        url: orangeMarker,
+                                        url: greenMarker,
                                         scaledSize: new window.google.maps.Size(35,50)
                                     }}
                                     onClick={() => {
@@ -162,3 +162,4 @@ const Title = styled.h1`
 `;
 
 export default Map;
+

@@ -26,19 +26,19 @@ const NavBar = () => {
     return(
         <Wrapper>
             <Button active = {active === 1} onClick = {() => handleClick(1,`profile/${usuarioActual._id}`)}>
-                <FiUser size = {iconSize} color = {'EE6C4D'}/>
+                <FiUser size = {iconSize} color = {'00C258'}/>
             </Button>
             <Button active = {active === 2} onClick = {() => handleClick(2,'group-chats')}>
-                <FiMessageCircle size = {iconSize} color = {'EE6C4D'}/>
+                <FiMessageCircle size = {iconSize} color = {'00C258'}/>
             </Button>
             <Button active = {active === 3} onClick = {() => handleClick(3,'create-actividad')}>
-                <FiPlusCircle size = {iconSize} color = {'EE6C4D'}/>
+                <FiPlusCircle size = {iconSize} color = {'00C258'}/>
             </Button>
             <Button active = {active === 4} onClick = {() => handleClick(4,'notifications')}>
-                <FiBell size = {iconSize} color = {'EE6C4D'}/>
+                <FiBell size = {iconSize} color = {'00C258'}/>
             </Button>
             <Button active = {active === 5} onClick = {() => handleClick(5,'home')}>
-                <FiHome size = {iconSize} color = {'EE6C4D'}/>
+                <FiHome size = {iconSize} color = {'00C258'}/>
             </Button>
         </Wrapper>
     );
@@ -52,7 +52,7 @@ const Button = styled.button`
     width: 25%;
     cursor: pointer;
 
-    ${({ active }) => active && ` border-bottom: 7px solid #EE6C4D; `}
+    ${({ active }) => active && ` border-bottom: 7px solid #00C258; `}
 
 `;
 const Wrapper = styled.div`

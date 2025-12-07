@@ -34,7 +34,7 @@ const Button = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #EE6C4D;
+    background: #00C258;
     color: white;
     border: 2px solid white;
     border-radius: 6px;

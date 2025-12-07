@@ -28,4 +28,6 @@ export const levelToSpanish = {
     'Average': 'Promedio',
     'Advanced': 'Avanzado',
     'Professional': 'Profesional',
+    'All': 'Todos',
 };
+

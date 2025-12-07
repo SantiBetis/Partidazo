@@ -6,31 +6,36 @@ import CircularProgress from '@mui/material/CircularProgress/index.js';
 import { FiMapPin, FiClipboard } from "react-icons/fi/index.esm.js";
 import moment from 'moment';
 import JoinButton from './JoinButton.js';
+import CancelButton from './CancelButton.js';
 import { CurrentUserContext } from "../all-contexts/currentUserContext.js";
 import ActivityParticipant from "./ActivityParticipant.js";
-import { sportToSpanish, levelToSpanish } from "../create-activity-page/sportTranslations.js";
 
 
+/**
+ * Componente ActivityDetails - Página de detalles de una actividad deportiva
+ * Muestra información completa de la actividad: fecha, hora, ubicación, descripción, participantes
+ * Permite unirse/retirarse de actividades o cancelarlas (si eres el creador)
+ * Calcula y muestra plazas disponibles en tiempo real
+ */
 const ActivityDetails = () => {
-    // Get the current user data de la context
+    // Obtener datos del usuario actual del contexto
     const { usuarioActual } = useContext(CurrentUserContext);
     const history = useHistory();
 
-    // Get the post id for fetching 
+    // Obtener el ID de la actividad de los parámetros de la URL
     const { _id } = useParams();
 
-    // A state variable store single post data aftet fetching
+    // Estado para almacenar los datos de la actividad individual
     const [ postData, setPostData] = useState(null);
 
-    // A state variable to handle the loading screen until data is fetched
+    // Estado para controlar la pantalla de carga mientras se obtienen los datos
     const [ postStatus, setPostStatus ] = useState('loading');
 
-    // A state variable to handle the update of remaning sports in the actividad 
-    // The State varibale is for user interaction to show a realtime update in the number 
-    // of remanining sports in the actividad. The backend already is built to update the remaining spots for an actividad
+    // Estado para gestionar el número de plazas restantes en la actividad
+    // Se actualiza en tiempo real cuando los usuarios se unen o retiran
     const [ numOfRemaniningSpots, SetNumOfRemaniningSpots ] = useState(undefined);
 
-    // Create an endpoint to fetch specific post information
+    // Obtener información específica de la actividad al montar el componente
     useEffect(()=>{
         setPostStatus('loading');
         fetch(`/posts/${_id}`)
@@ -45,7 +50,7 @@ const ActivityDetails = () => {
     if( postStatus === 'loading'){
         return (
             <CircleWrapper>
-                <CircularProgress style={{'color': '#EE6C4D'}} />
+                <CircularProgress style={{'color': '#00C258'}} />
             </CircleWrapper>)
     }
     return(
@@ -56,7 +61,7 @@ const ActivityDetails = () => {
                 </ReturnButton>
             </ReturnBar>
             <Summary>
-                <FaShieldAlt size = {100} color = {'#EE6C4D'}/>
+                <FaShieldAlt size = {100} color = {'#00C258'}/>
                 { 
                     usuarioActual && postData.creator_id !== usuarioActual._id && 
                     <JoinButton 
@@ -65,10 +70,14 @@ const ActivityDetails = () => {
                         SetNumOfRemaniningSpots = {SetNumOfRemaniningSpots}
                     />
                 }
+                {
+                    usuarioActual && postData.creator_id === usuarioActual._id &&
+                    <CancelButton postData={postData} />
+                }
                 <Type>
-                    <span>{sportToSpanish[postData.actividadType] || postData.actividadType || 'Deporte desconocido'}</span>
+                    <span>{postData.actividadType || 'Deporte desconocido'}</span>
                     {" - "}
-                    <span>Nivel {levelToSpanish[postData.level] || postData.level || 'desconocido'}</span>
+                    <span>Nivel {postData.level || 'desconocido'}</span>
                 </Type>
                 <Date>
                     {postData.actividadDate && postData.actividadDate.date
@@ -78,7 +87,7 @@ const ActivityDetails = () => {
                 </Date>
                 <Time>
                     {postData.actividadDate && postData.actividadDate.from && postData.actividadDate.to
-                        ? `${moment(postData.actividadDate.from , 'HH:mm').format('hh:mm A')} to ${moment(postData.actividadDate.to , 'HH:mm').format('hh:mm A')}`
+                        ? `${moment(postData.actividadDate.from , 'HH:mm').format('hh:mm A')} a ${moment(postData.actividadDate.to , 'HH:mm').format('hh:mm A')}`
                         : 'Hora no disponible'
                     }
                 </Time> 
@@ -212,7 +221,7 @@ h2{
     font-size: 1.5em;
     border-bottom: 2px solid #E0FBFC;
     padding-bottom: 6px;
-    color: #EE6C4D;
+    color: #00C258;
 }
 p{
     margin:10px 0px;
@@ -223,7 +232,7 @@ h2{
     font-size: 1.5em;
     border-bottom: 2px solid #E0FBFC;
     padding-bottom: 6px;
-    color: #EE6C4D;
+    color: #00C258;
 }
 p{
     margin:10px 0px;
@@ -241,7 +250,7 @@ font-size: 1.2em;
 const Type = styled.div`
 font-weight: 600;
 font-size: 1.6em;
-color: #EE6C4D;
+color: #00C258;
 `;
 
 const SubContainer = styled.div`

@@ -13,6 +13,7 @@ const { postNewActivityPost } = require('./handlers/posts-handlers/postNewActivi
 const { deletePostById } = require('./handlers/posts-handlers/deletePostByPostId');
 const { getPostById } = require('./handlers/posts-handlers/getPostByPostId');
 const { putjoinByUserId } = require('./handlers/posts-handlers/putJoinActivity');
+const { cancelActivityByPostId } = require('./handlers/posts-handlers/cancelActivityByPostId');
 const { updateFollowingUsers} = require('./handlers/current-user-handlers/followUsers');
 const { chatSocket } = require('./chat-socket/index');
 const { getLoginSession, postLoginSession, deleteLoginSession } = require('./handlers/express-sessoin-handlers/express-session-handlers');
@@ -72,6 +73,9 @@ app.get('/posts/:_id', getPostById );
 
 // Manejar al usuario actual uniéndose o retirándose de una actividad
 app.put('/post/updateJoining', putjoinByUserId);
+
+// Cancelar una actividad (solo el creador)
+app.delete('/post/cancelActivity/:postId', cancelActivityByPostId);
 
 // Obtener la sesión del usuario actual desde express-session
 app.get("/get-login-session", getLoginSession);

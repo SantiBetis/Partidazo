@@ -12,14 +12,17 @@ const options = {
     useUnifiedTopology: true,
 };
 
-// *************************************************************************
-// Esta función manejadora se utiliza para manejar la adición de un nuevo usuario to the database
-// Su punto final se llama cuando un nuevo usuario se registra de la sign-up page
-// *************************************************************************
-
+/**
+ * Handler para registrar un nuevo usuario en la base de datos.
+ * Valida todos los campos requeridos (nombre, email, fecha de nacimiento, contraseña).
+ * Verifica que el email no esté ya registrado.
+ * Hashea la contraseña con bcrypt antes de guardarla.
+ * Crea el objeto del usuario con valores por defecto para followers[], following[], y posts[].
+ * Llamado desde SignupPage en el frontend.
+ */
 const addNewUser = async (req, res) => {
     try {
-        // Desestructurando las entradas del usuario para validaciones
+        // Desestructurar las entradas del formulario de registro para validación
         const { 
             displayName,
             email,
@@ -30,13 +33,13 @@ const addNewUser = async (req, res) => {
             imgSrc,
         } = req.body;
 
-        // consulta para verificar si ya existe una cuenta asociada con este correo electrónico
+        // Query para verificar si ya existe una cuenta con este email
         const query = { email };
 
-        // Hash de la contraseña
+        // Hashear la contraseña usando bcrypt para seguridad (10 salt rounds)
         const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
 
-        // Escribir la fecha en formato ISO YYYY-MM-DDTHH:mm:ss.sssZ
+        // Obtener la fecha actual en formato ISO para dateCreated
         const d = new Date();
         let todayDate = d.toISOString();
 

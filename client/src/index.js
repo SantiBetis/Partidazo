@@ -20,3 +20,4 @@ ReactDOM.render(
 
 // Set global locale for moment (es)
 moment.locale('es');
+

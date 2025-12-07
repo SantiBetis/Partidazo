@@ -10,17 +10,21 @@ const options = {
     useUnifiedTopology: true,
 };
 
-// ***********************************************************************************
-// Este manejador se utiliza para permitir que el usuario inicie sesión. It validates the user credentials and 
-// guardar la información del usuario actual en la base de datos in 'usuario actual' colección
-// ************************************************************************************
-
+/**
+ * Handler para autenticar y iniciar sesión de usuarios.
+ * Valida las credenciales (email y contraseña) contra la base de datos.
+ * Soporta contraseñas hasheadas con bcrypt y contraseñas legacy en texto plano.
+ * Retorna la información completa del usuario si las credenciales son válidas.
+ * Llamado desde LoginPage en el frontend.
+ */
 const getLoggedinUser = async (req, res) => {
 
+    // Extraer email y contraseña de los query parameters
     const { email, password } = req.query;
     // const query = { email, password };
     const query = { email };
 
+    // Validar que los campos no estén vacíos antes de consultar la base de datos
     if( email === ''){
         return res.status(400).json({status: 404, message: "Por favor ingresa tu correo electrónico"})
     }
@@ -34,12 +38,12 @@ try {
     console.log("connected");
 
     const db = client.db("Partidazo");
-    // Buscar un usuario cuando se ingresa la dirección de correo
+    // Buscar usuario en la base de datos por email
     const result = await db.collection("users").findOne(query);
 
     if(result){
-        // Si la contraseña es hash ( funciona para cuentas después de que se agregue esta característica )
-        // luego verifica si la contraseña ingresada coincide con la contraseña en la base de datos 
+        // Verificar la contraseña usando bcrypt (para cuentas con hash)
+        // o comparación directa (para cuentas legacy sin hash)
         const cmp = await bcrypt.compare(password, result.password);
         if (cmp || password === result.password) {
             client.close();

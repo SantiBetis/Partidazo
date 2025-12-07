@@ -3,9 +3,18 @@ import styled from "styled-components";
 import { CurrentUserContext } from "../all-contexts/currentUserContext.js";
 import { FiMapPin, FiClipboard, FiXCircle, FiCheckCircle } from "react-icons/fi/index.esm.js";
 
+/**
+ * Componente JoinButton - Botón para unirse o retirarse de una actividad
+ * Permite a los usuarios unirse a actividades deportivas o retirarse de ellas
+ * Muestra el estado actual de participación y gestiona la lógica de unión/retiro
+ * 
+ * @param {Object} postData - Datos completos de la actividad (fecha, hora, participantes, límite, etc.)
+ * @param {Number} numOfRemaniningSpots - Número de plazas disponibles restantes
+ * @param {Function} SetNumOfRemaniningSpots - Función para actualizar el número de plazas disponibles
+ */
 const JoinButton = ({ postData, numOfRemaniningSpots, SetNumOfRemaniningSpots }) => {
 
-    // Get the current user data de la context
+    // Obtener datos del usuario actual del contexto
     const { usuarioActual } = useContext(CurrentUserContext);
 
     // Verificar si la actividad está en el pasado
@@ -15,25 +24,29 @@ const JoinButton = ({ postData, numOfRemaniningSpots, SetNumOfRemaniningSpots })
     const now = new Date();
     const isActivityPassed = actividadEndTime ? actividadEndTime < now : false;
 
-    // Check the current status of participando ( before clicking on the join/withdraw button )
-    // If the user has already joined, then the initial value for isCurrentUserJoined is set to true
-    // If the user has not joined, then the initial value for isCurrentUserJoined is set to false
+    // Verificar el estado actual de participación (antes de hacer clic en el botón unirse/retirarse)
+    // Si el usuario ya se unió, entonces el valor inicial para isCurrentUserJoined se establece en true
+    // Si el usuario no se ha unido, entonces el valor inicial para isCurrentUserJoined se establece en false
     const initialJoiningStatus = postData.participando && usuarioActual 
         ? postData.participando.some( (user) => user._id === usuarioActual._id) 
         : false;
     const [ isCurrentUserJoined, setIsCurreuntUserJoined ] = useState(initialJoiningStatus);
 
+    /**
+     * Maneja la acción de unirse o retirarse de la actividad
+     * Actualiza el estado local y envía la solicitud al backend
+     */
     const handleJoining = () => {
-        // This update is for userinteraction to change the button style based on
-        // the current status of participando
+        // Esta actualización es para la interacción del usuario para cambiar el estilo del botón basado en
+        // el estado actual de participación
         setIsCurreuntUserJoined(!isCurrentUserJoined);
 
-        // This is also for frontend to increment/decrement num of spots in the actividad
+        // Esto también es para el frontend para incrementar/decrementar el número de plazas en la actividad
         isCurrentUserJoined 
         ? SetNumOfRemaniningSpots( numOfRemaniningSpots + 1)
         : SetNumOfRemaniningSpots( numOfRemaniningSpots - 1);
 
-        // Now let's let the backend does its work to update the participando status + the num of remaning spots
+        // Ahora permitir que el backend haga su trabajo para actualizar el estado de participación + el número de plazas restantes
         fetch('/post/updateJoining',
         {
             method: "PUT",

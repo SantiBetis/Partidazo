@@ -10,36 +10,39 @@ import { FiChevronLeft } from "react-icons/fi/index.esm.js";
 import FollowButton from "./AllPosts/FollowButton.js";
 import FollowersModal from "./FollowersModal.js";
 import moment from 'moment';
-import BannerBackground from "../../components/assets/circle-scatter-haikei.svg";
+import BannerBackground from "../../components/assets/profile-low-poly-grid-haikei.svg";
 
-// **********************************************
-// This component is to render the profile page
-// for both the current user and others
-// **********************************************
-
+/**
+ * Componente de la página de perfil de usuario.
+ * Renderiza el perfil tanto del usuario actual como de otros usuarios.
+ * Muestra información del usuario, estadísticas (seguidores/siguiendo), foto de perfil.
+ * Permite seguir/dejar de seguir usuarios (si no es el perfil propio).
+ * Muestra las actividades creadas y a las que se ha unido el usuario.
+ * Incluye modales para ver listas de seguidores y seguidos.
+ */
 const Profile = () => {
     
     let history = useHistory();
     let { _id } = useParams();
     
-    // Get current user information de la usuario actual Context
+    // Obtener información del usuario actual desde el contexto
     const { usuarioActual } = useContext(CurrentUserContext);
-    // A state variable to store the data for the user profile
+    // Estado para almacenar los datos del perfil que se está visualizando
     const [profileData,setProfileData] = useState(null);
     const [profileDataStatus,setProfileDataStatus] = useState("idle");
 
-    // A state variable to update the number of followers in profile in the 
-    // frontend only since backend takes sometimes to update the frontend,
-    // this state variable is just for user interaction to see the update in frontend
-    // the backend already knows if it's asked to follow or unfollow
+    // Estado para actualizar el número de seguidores en el frontend inmediatamente
+    // (actualización optimista para mejor UX mientras el backend procesa)
     const [ numOfFollowers, setNumOfFollowers ] = useState(undefined);
     
-    // States for modals
+    // Estados para controlar la apertura de modales de seguidores/seguidos
     const [followersModalOpen, setFollowersModalOpen] = useState(false);
     const [followingModalOpen, setFollowingModalOpen] = useState(false);
     
-    // When the profile component is mounted, fetch the profile data of the
-    // user with the provided _id in useParams();
+    /**
+     * Obtiene los datos del perfil del usuario al montar el componente o cuando cambia el _id.
+     * El _id proviene de useParams() y determina qué perfil se muestra.
+     */
     useEffect( () => {
             setProfileDataStatus('loading')
             fetch(`/users/${_id}`)
@@ -55,7 +58,7 @@ const Profile = () => {
     if( profileDataStatus === 'loading' || profileData == null || profileData === undefined || usuarioActual == null){
         return (
         <CircleWrapper>
-            <CircularProgress style={{'color': '#EE6C4D'}} />
+            <CircularProgress style={{'color': '#00C258'}} />
         </CircleWrapper>
         
         )
@@ -268,7 +271,7 @@ font: inherit;
 transition: all 0.3s ease;
 
 &:hover {
-    color: #EE6C4D;
+    color: #00C258;
     transform: scale(1.05);
 }
 

@@ -7,15 +7,26 @@ import { FiChevronLeft } from "react-icons/fi/index.esm.js";
 import { useHistory } from "react-router";
 import CircularProgress from '@mui/material/CircularProgress/index.js';
 
+/**
+ * Componente principal del chat en tiempo real.
+ * Establece conexión Socket.IO con el servidor para mensajería en tiempo real.
+ * Cada actividad tiene su propia sala de chat identificada por actividadId.
+ * Escucha eventos 'get-messages' para recibir mensajes nuevos.
+ * Incluye auto-scroll al último mensaje y manejo de estados de carga.
+ */
 const Chat = ({ usuarioActual, actividadId })=> {
 
     let history  = useHistory();
 
-    const scroll = useRef();
+    const scroll = useRef(); // Referencia para hacer scroll automático al último mensaje
     const [messages, setMessages] = useState([]);
     const [ chatStatus, setChatStatus ] = useState('loading');
     const [ socket, setSocket ] = useState(null);
 
+    /**
+     * Establecer conexión Socket.IO cuando cambia el actividadId.
+     * Envía el actividadId en el query para unirse a la sala correcta.
+     */
     useEffect( () => {
             setSocket(
                 socketIoClient("http://localhost:8000",
@@ -24,16 +35,21 @@ const Chat = ({ usuarioActual, actividadId })=> {
             );
     },[actividadId]);
 
+    /**
+     * Configurar listeners de Socket.IO cuando se establece la conexión.
+     * Escucha el evento 'get-messages' para recibir mensajes del servidor.
+     * Cleanup: desconecta el socket cuando el componente se desmonta.
+     */
     useEffect(()=> {
         if( socket === null){
-            return; // Just return early without a cleanup function
+            return; // Retornar temprano si no hay socket aún
         }
         setChatStatus('loading');
 
         socket.on('connect', () => console.log('New client with id: ', socket.id));
 
         socket.on("get-messages", (messages) => {
-            // expect server to send us the latest messages
+            // Recibir los mensajes más recientes desde el servidor
             setMessages(messages);
             setChatStatus('idle');
         });
@@ -45,7 +61,7 @@ const Chat = ({ usuarioActual, actividadId })=> {
     if ( chatStatus === 'loading'){
         return(
             <LoadingContainer>
-                <CircularProgress style={{'color': '#EE6C4D'}} />
+                <CircularProgress style={{'color': '#00C258'}} />
             </LoadingContainer>
         )
     }
@@ -89,7 +105,7 @@ const Chat = ({ usuarioActual, actividadId })=> {
                             </MessageContainerReceived>
                         }
                     </div>
-                ))}}
+                ))}
             </MessagesContainer>
             <SendMessage scroll={scroll} usuarioActual = { usuarioActual } actividadId = { actividadId } socket = {socket }/>
         </Wrapper>
@@ -165,8 +181,7 @@ const MessageSent = styled(Message)`
     background-color: #3C4552;
     color: white;
     border-top-right-radius: 0px;
-    flex-direction: row-reverse;
-    text-align: end;
+    text-align: left;
     float: right;
 `;
 
@@ -216,4 +231,5 @@ outline: inherit;
 `;
 
 export default Chat
+
 

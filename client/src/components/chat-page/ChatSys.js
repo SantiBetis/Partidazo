@@ -4,12 +4,20 @@ import Chat from './components/Chat.js';
 import { CurrentUserContext } from '../all-contexts/currentUserContext.js';
 import { useParams } from 'react-router';
 
+/**
+ * Componente contenedor del sistema de chat.
+ * Envuelve el componente Chat y maneja la carga del usuario actual.
+ * El _id de la actividad se obtiene de los parámetros de la URL.
+ * Cada actividad tiene su propia sala de chat en tiempo real.
+ */
 const ChatSys = () => {
 
+  // Obtener el ID de la actividad desde la URL
   const { _id } = useParams();
 
   const { usuarioActual } = useContext(CurrentUserContext);
 
+  // Mostrar mensaje de carga mientras se obtiene el usuario actual
   if ( usuarioActual == null ){
 
     return <div> ...Loading </div>

@@ -1,5 +1,5 @@
 // *******************************************************************************
-// This file is used authnticate user logged in and update the current user info
+// Este archivo se utiliza para autenticar al usuario que ha iniciado sesión y actualizar la información del usuario actual
 // *******************************************************************************
 import React, { useState, createContext, useEffect } from "react";
 

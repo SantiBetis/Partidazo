@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 //****************************************************************
-// This si ust a fancy loading screen component. It is not being
-// used in this version of the app.
+// Este es solo un componente de pantalla de carga elegante. No se está
+// usando en esta versión de la aplicación.
 //****************************************************************
 
 const FancyLoadingScreen = () => {

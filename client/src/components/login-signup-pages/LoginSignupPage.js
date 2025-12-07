@@ -4,8 +4,8 @@ import { useHistory } from "react-router-dom";
 import SportsBackground from '../assets/wave-haikei.svg'
 import PartidazoLogo from '../assets/PartidazoLogo.png';
 //*****************************************************************
-// This page is the fist page in the app, it gives the use the option
-// to sign in or log in
+// Esta página es la primera página de la aplicación, le da al usuario la opción
+// de registrarse o iniciar sesión
 //*****************************************************************
 const LoginSignupPage = () => {
 

@@ -3,8 +3,8 @@ import styled from "styled-components";
 import SingleActivity from "../acitivity-components/SingleActivity.js";
 import CircularProgress from '@mui/material/CircularProgress/index.js';
 //****************************************************************
-// This component renders the home feed. It displayed all posts with
-// the chosen filter
+// Este componente renderiza el feed principal. Muestra todos los posts
+// con el filtro elegido
 //****************************************************************
 
 

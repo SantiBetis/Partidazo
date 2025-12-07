@@ -6,18 +6,18 @@ import { useHistory } from "react-router";
 // import singleChatItemBackground from "../../assests/chat-low-poly-grid-haikei.svg";
 import singleChatItemBackground from "../assets/low-poly-grid-haikei.svg";
 //*****************************************************************
-// This component is used to render a single notification block in
-// the notification page
+// Este componente se utiliza para renderizar una notificación individual
+// en la página de notificaciones
 //*****************************************************************
 const SingleNotification = ({notification}) => {
 
     const history = useHistory();
 
-    // Clicking on user image navigates al perfil del usuario
+    // Hacer clic en la imagen del usuario navega al perfil del usuario
     const handleUserProfile = () => {
         history.push(`/profile/${notification.user._id}`);
     }
-    // Clicking on the actividad navigates to actividad details
+    // Hacer clic en la actividad navega a los detalles de la actividad
     const handleActivity = () => {
         history.push(`/actividad/${notification.actividad._id}`)
     }

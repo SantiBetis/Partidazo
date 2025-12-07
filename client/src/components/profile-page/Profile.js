@@ -177,7 +177,7 @@ background-position: center;
 background-size: cover;
 `;
 
-// This has an issue when imge is not squared
+// Esto tiene un problema cuando la imagen no es cuadrada
 // const ProfileImg = styled.img`
 // position: absolute;
 // width: 150px;
@@ -188,7 +188,7 @@ background-size: cover;
 // top: 28px;
 // left: 13px;
 // `
-// This fixes the issue when the image is not squared
+// Esto soluciona el problema cuando la imagen no es cuadrada
 const ProfileImgSquared = styled.div`
 background-repeat: no-repeat;
 background-position: center;

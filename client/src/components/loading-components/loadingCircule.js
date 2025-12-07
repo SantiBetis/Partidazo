@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { keyframes } from "styled-components";
 import { ImSpinner9 } from "react-icons/im/index.esm.js";
 //****************************************************************
-// This is loading icon for the buttons only
+// Este es el ícono de carga solo para botones
 //****************************************************************
 
 const LoadingCircule = () => {

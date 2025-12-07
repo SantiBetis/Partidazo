@@ -5,8 +5,8 @@ import { CurrentUserContext } from '../../all-contexts/currentUserContext.js';
 import CircularProgress from '@mui/material/CircularProgress/index.js';
 
 // **********************************************************
-// This components is rendered inside the user profile page
-// It shows the activities the user of the profile  has joined
+// Este componente se renderiza dentro de la página de perfil del usuario
+// Muestra las actividades a las que el usuario del perfil se ha unido
 // ***********************************************************
 
 const ActivityJoined = ( { profileData }) => {

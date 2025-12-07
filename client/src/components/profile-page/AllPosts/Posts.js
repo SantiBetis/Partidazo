@@ -5,12 +5,12 @@ import ActivityJoined from "./ActivitedJoined.js";
 import ActivityPosted from "./ActivityPosted.js";
 
 // *********************************************************************************
-// This component takes both ActivityJoined and ActivityPosted components
-// and render them here in post. This post component is rendered in the profile page
+// Este componente incluye ambos componentes ActivityJoined y ActivityPosted
+// y los renderiza aquí en posts. Este componente se renderiza en la página de perfil
 // *********************************************************************************
 const Posts = ({ profileData }) => {
-    // This variable is used to control the Toggle bar
-    // inialized with 1 to highlight the 'Activities Posted' first at rendering
+    // Esta variable se utiliza para controlar la barra de alternancia
+    // inicializada con 1 para resaltar 'Actividades Publicadas' primero al renderizar
     const [ displayedPage, setDisplayedPage ] = useState(1);
     
     return(

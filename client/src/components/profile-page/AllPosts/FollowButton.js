@@ -1,17 +1,17 @@
 import React,{ useState } from "react";
 import styled from "styled-components";
 // ***************************************************************
-// This components handles follow/unfollow button that is shown in
-// the user profile. 
+// Este componente maneja el botón de seguir/dejar de seguir que se muestra
+// en el perfil del usuario
 // ***************************************************************
 
 const FollowButton = ({ usuarioActual, targetedUser, numOfFollowers, setNumOfFollowers })=>{
 
-    // Check if whether current user is already following the targeted user or not
-    // If yes, then set the initial value of isCurrentUserFollowing to true
-    // If no, then set the initial value of isCurrentUserFollowing to false
-    // The state varibale is for frontend, the backend already knows if it's asked to follow or unfollow
-    // based on the current status of following 
+    // Verificar si el usuario actual ya está siguiendo al usuario objetivo o no
+    // Si es así, establecer el valor inicial de isCurrentUserFollowing en true
+    // Si no, establecer el valor inicial de isCurrentUserFollowing en false
+    // La variable de estado es para el frontend, el backend ya sabe si se le pide seguir o dejar de seguir
+    // basado en el estado actual de seguimiento 
     const initialFollowerStatus = targetedUser.followers.some( (user) => user._id === usuarioActual._id) ? true: false;
     const [ isCurrentUserFollowing, setIsCurreuntUserFollowing ] = useState(initialFollowerStatus);
 

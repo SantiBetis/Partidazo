@@ -5,12 +5,12 @@ import { CurrentUserContext } from "../all-contexts/currentUserContext.js";
 import { FiBell, FiUser, FiMessageCircle, FiHome, FiPlusCircle } from "react-icons/fi/index.esm.js";
 
 //*****************************************************************
-// This the nav bar in the main app, it navagates between
-// profile, chat, posting an actividad, notification, and home feed
+// Esta es la barra de navegación en la aplicación principal, navega entre
+// perfil, chat, publicar una actividad, notificaciones y feed principal
 //*****************************************************************
 const NavBar = () => {
 
-    // A state variable to control nav bar active page
+    // Una variable de estado para controlar la página activa de la barra de navegación
     const [active, setActive] = useState(1);
     const { usuarioActual } = useContext(CurrentUserContext)
     let history = useHistory();

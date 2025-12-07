@@ -4,8 +4,8 @@ import SingleActivity from "../../acitivity-components/SingleActivity.js";
 import { CurrentUserContext } from '../../all-contexts/currentUserContext.js';
 import CircularProgress from '@mui/material/CircularProgress/index.js';
 // **********************************************************
-// This components is rendered inside the user profile page
-// It shows the activities the user of the profile  has posted
+// Este componente se renderiza dentro de la página de perfil del usuario
+// Muestra las actividades que el usuario del perfil ha publicado
 // ***********************************************************
 const ActivityPosted = ({ profileData }) => {
     const { usuarioActual } = useContext(CurrentUserContext)

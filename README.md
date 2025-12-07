@@ -1,5 +1,5 @@
 ⚽ Partidazo - Plataforma Social de Actividades Deportivas
-👨‍💻 Autor: Santiago Pérez Olivares
+👨‍💻 Autor: Santiago Pérez Olivares (DAW)
 
 ---
 
@@ -73,6 +73,47 @@ Encontrar compañeros para practicar deportes puede ser complicado. **Partidazo*
 - **Colección users**: información de usuarios, seguidores, notificaciones
 - **Colección posts**: actividades deportivas con participantes y mensajes
 - **Datos en español**: deportes y niveles almacenados en español
+
+#### 📄 Documentación
+- **Swagger UI** para documentación interactiva de la API
+- **Swagger JSDoc** para generar especificación OpenAPI 3.0
+
+---
+
+## 📜 Licencias
+
+Este proyecto utiliza las siguientes tecnologías y librerías bajo sus respectivas licencias:
+
+### Frontend
+- **React** - MIT License
+- **React Router** - MIT License
+- **Styled Components** - MIT License
+- **Socket.IO Client** - MIT License
+- **Material-UI** - MIT License
+- **Moment.js** - MIT License
+- **React Icons** - MIT License
+- **@react-google-maps/api** - MIT License
+
+### Backend
+- **Node.js** - MIT License
+- **Express.js** - MIT License
+- **MongoDB Driver** - Apache License 2.0
+- **Socket.IO** - MIT License
+- **Express-Session** - MIT License
+- **Bcrypt** - MIT License
+- **UUID** - MIT License
+- **Dotenv** - BSD-2-Clause License
+- **CORS** - MIT License
+- **Swagger UI Express** - Apache License 2.0
+- **Swagger JSDoc** - MIT License
+- **Nodemon** - MIT License
+
+### Servicios Externos
+- **MongoDB Atlas** - MongoDB, Inc.
+- **Google Maps API** - Google Maps Platform Terms of Service
+- **Cloudinary** - Cloudinary Terms of Service
+
+**Nota**: Todas las dependencias están listadas en los archivos `package.json` del cliente y servidor con sus versiones específicas.
 
 ---
 
